@@ -15,7 +15,6 @@ import { ButtonBase } from "common/UI";
 import AccordionIMG from "resources/accordion.png";
 
 import { motion } from "motion/react";
-import { delay } from "motion";
 
 const links = [
   {
