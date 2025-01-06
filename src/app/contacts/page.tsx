@@ -1,6 +1,6 @@
 import { Container } from "common";
 
-export default function SheetsPage() {
+export default function ContactsPage() {
   return (
     <section>
       <Container>

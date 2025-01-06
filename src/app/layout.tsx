@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Montserrat, Cormorant_Infant } from "next/font/google";
+import { Footer, Header } from "components/Layout";
+
 import "styles/tailwind.css";
-import { Header } from "components/Header";
+import "lenis/dist/lenis.css";
+import { LenisProvider } from "components/LenisProvider";
 
 export const dynamic = "force-dynamic";
 
@@ -36,6 +39,8 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <Footer />
+        <LenisProvider />
       </body>
     </html>
   );

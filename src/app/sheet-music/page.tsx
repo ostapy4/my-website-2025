@@ -1,6 +1,6 @@
 import { Container } from "common";
 
-export default function ContactMePage() {
+export default function SheetMusicPage() {
   return (
     <section>
       <Container>

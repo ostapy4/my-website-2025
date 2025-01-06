@@ -27,6 +27,7 @@ export function Title(props: TitleProps) {
           "text-2xl lg:text-3xl": size === "3xl",
           "text-3xl lg:text-4xl": size === "4xl",
           "text-4xl lg:text-5xl": size === "5xl",
+          "text-5xl lg:text-6xl": size === "6xl",
         },
         className
       )}

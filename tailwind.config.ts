@@ -6,8 +6,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        // main: { 300: "#F5B927", 400: "#EE8B1C", 500: "#E86012" },
         // background: "#20242F",
+        ok_orange: { 300: "#F5B927", 400: "#EE8B1C", 500: "#E86012" },
         ok_main: {
           100: "#E6DAC4",
           200: "#F5D9B4",

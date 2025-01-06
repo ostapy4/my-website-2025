@@ -1,8 +1,9 @@
 export const MainUrls = {
   getHome: () => "/",
   getAboutMe: () => "/about-me",
-  getSheets: () => "/sheets",
-  getContactMe: () => "/contact-me",
+  getAcccordionLessons: () => "/accordion-lessons",
+  getSheetMusic: () => "/sheet-music",
+  getContacts: () => "/contacts",
   // getTerms: () => "/terms",
   // getPrivacy: () => "/privacy",
   // getCookies: () => "/cookies",
