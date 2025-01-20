@@ -18,7 +18,7 @@ export function Title(props: TitleProps) {
   return (
     <Component
       className={cn(
-        "font-cormorant font-bold text-ok_main-600 italic",
+        "font-cormorant font-bold italic text-ok_main-600",
         {
           "text-sm lg:text-base": size === "base",
           "text-base lg:text-lg": size === "lg",
@@ -29,7 +29,7 @@ export function Title(props: TitleProps) {
           "text-4xl lg:text-5xl": size === "5xl",
           "text-5xl lg:text-6xl": size === "6xl",
         },
-        className
+        className,
       )}
     >
       {children}

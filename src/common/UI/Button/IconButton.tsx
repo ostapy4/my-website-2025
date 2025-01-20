@@ -1,5 +1,6 @@
-import { ButtonBase, ButtonBaseProps } from "./ButtonBase";
 import { cn } from "utils/cn";
+
+import { ButtonBase, ButtonBaseProps } from "./ButtonBase";
 
 export type IconButtonProps<T> = {
   size?: "small" | "normal" | "large";
@@ -29,9 +30,9 @@ export function IconButton<T>(props: IconButtonProps<T>) {
           },
           // Default
           {
-            "bg-white/[0.01] backdrop-blur border border-white/10":
+            "border border-white/10 bg-white/[0.01] backdrop-blur":
               colorVariant === "default",
-            "hover:gradient-hot-primary hover:border-0 active:bg-main-500 disabled:hover:bg-white/[0.01]":
+            "hover:gradient-hot-primary active:bg-main-500 hover:border-0 disabled:hover:bg-white/[0.01]":
               colorVariant === "default" && !loading,
           },
           {
@@ -39,7 +40,7 @@ export function IconButton<T>(props: IconButtonProps<T>) {
             "size-11 p-1": size === "normal",
             "h-12 w-12 p-1": size === "large",
           },
-          className?.button
+          className?.button,
         ),
         loadingIcon: className?.loadingIcon,
       }}

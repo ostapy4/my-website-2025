@@ -1,25 +1,39 @@
-import { Container, Title } from "common";
-import OstapIMG from "components/Home/static/ostap.jpg";
+import { Container, MotionSection, Title } from "common";
 import Image from "next/image";
 import { BsFillCheckSquareFill } from "react-icons/bs";
-import NotesIMG from "components/Home/static/notes.svg";
+
+import { HeroEmailForm } from "components/Forms/HeroEmailForm";
 import KeyIMG from "components/Home/static/music-key.svg";
+import NotesIMG from "components/Home/static/notes.svg";
+import OstapIMG from "components/Home/static/ostap.jpg";
+
 const features = ["Accordion lessons", "Sheet music", "Audio transcription"];
 
 export function Hero() {
   return (
-    <section className={"bg-ok_main-100"}>
+    <MotionSection
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+      className={"bg-ok_main-100"}
+    >
       <Container>
-        <div className={"min-h-[calc(100vh-77px)] py-8 flex"}>
+        <div className={"flex min-h-[calc(100vh-77px)] py-8"}>
           <div
             className={
-              "flex shadow-[0_0_50px_rgba(110,58,34,.5),inset_0_0_20px_rgba(110,58,34,.5)] rounded-[32px] bg-ok_main-100 w-full"
+              "flex w-full rounded-3xl bg-ok_main-100 shadow-[0_0_50px_rgba(110,58,34,.5),inset_0_0_20px_rgba(110,58,34,.5)] lg:rounded-[32px]"
             }
           >
             <div
-              className={"flex overflow-hidden rounded-3xl p-3 gap-3 w-full"}
+              className={
+                "flex w-full flex-col gap-3 overflow-hidden rounded-3xl p-3 lg:flex-row"
+              }
             >
-              <div className={"relative flex-1 overflow-hidden rounded-3xl"}>
+              <div
+                className={
+                  "relative aspect-[4/3] flex-1 overflow-hidden rounded-3xl"
+                }
+              >
                 <Image
                   src={OstapIMG}
                   alt={"Ostap Konashuk"}
@@ -29,24 +43,24 @@ export function Hero() {
               </div>
               <div
                 className={
-                  "relative flex-1 p-3 flex flex-col items-center justify-center gap-y-5"
+                  "relative flex flex-1 flex-col items-center justify-center gap-y-4 p-3 md:gap-y-5"
                 }
               >
                 <Image
                   src={NotesIMG}
                   alt={"Notes"}
                   className={
-                    "absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-0 opacity-10"
+                    "pointer-events-none absolute left-1/2 top-1/2 -z-0 w-full -translate-x-1/2 -translate-y-1/2 select-none opacity-10 lg:top-1/3"
                   }
                 />
                 <Title
                   component={"h1"}
                   size={"6xl"}
-                  className={"text-ok_main-700 relative"}
+                  className={"relative text-ok_main-700"}
                 >
                   <span
                     className={
-                      "bg-gradient-to-br from-ok_orange-300 to-ok_orange-500 text-transparent bg-clip-text px-1"
+                      "bg-gradient-to-br from-ok_orange-300 to-ok_orange-500 bg-clip-text px-1 text-transparent"
                     }
                   >
                     Ostap
@@ -55,14 +69,16 @@ export function Hero() {
                 </Title>
                 <p
                   className={
-                    "relative uppercase bg-ok_main-700 rounded-md px-3 py-1 text-white font-bold"
+                    "relative rounded-md bg-ok_main-700 px-3 py-1 font-bold uppercase text-white"
                   }
                 >
-                  accordionist - music teacher - arranger
+                  accordionist -{" "}
+                  <span className={"text-nowrap"}>music teacher</span> -
+                  arranger
                 </p>
                 <ul
                   className={
-                    "relative text-3xl font-semibold text-ok_main-600 space-y-3 font-cormorant italic py-5"
+                    "relative space-y-2 py-5 font-cormorant text-2xl font-semibold italic text-ok_main-600 md:space-y-3 md:text-3xl"
                   }
                 >
                   {features.map((f) => (
@@ -72,61 +88,45 @@ export function Hero() {
                     </li>
                   ))}
                 </ul>
-                <div className={"relative w-2/3 overflow-hidden rounded-xl"}>
+                <div
+                  className={
+                    "relative w-full max-w-[500px] overflow-hidden rounded-xl"
+                  }
+                >
                   <Image
                     src={KeyIMG}
                     alt={"Key"}
                     className={
-                      "absolute top-0 -left-2 rotate-45 max-w-10 opacity-70"
+                      "absolute -left-2 top-0 max-w-10 rotate-45 select-none opacity-70"
                     }
                   />
                   <Image
                     src={KeyIMG}
                     alt={"Key"}
                     className={
-                      "absolute top-[28%] left-[40%] -rotate-[20deg] max-w-10 opacity-70"
+                      "absolute left-[40%] top-[28%] max-w-10 -rotate-[20deg] select-none opacity-70"
                     }
                   />
                   <Image
                     src={KeyIMG}
                     alt={"Key"}
                     className={
-                      "absolute -top-[5%] right-[10%] rotate-[55deg] max-w-10 opacity-70"
+                      "absolute -top-[5%] right-[10%] max-w-10 rotate-[55deg] select-none opacity-70"
                     }
                   />
-                  <div className={"bg-white/60 z-10 backdrop-blur-sm p-4"}>
-                    <p className={"text-ok_main-600 text-xl text-center mb-4"}>
+                  <div className={"z-10 bg-white/60 p-4 backdrop-blur-sm"}>
+                    <p className={"mb-4 text-center text-xl text-ok_main-600"}>
                       Book a{" "}
                       <span
                         className={
-                          "bg-gradient-to-br from-ok_orange-300 to-ok_orange-400 text-transparent bg-clip-text font-bold"
+                          "bg-gradient-to-br from-ok_orange-300 to-ok_orange-400 bg-clip-text font-bold text-transparent"
                         }
                       >
                         FREE
                       </span>{" "}
                       trial lesson
                     </p>
-                    <form
-                      className={
-                        "flex gap-3 overflow-hidden pl-3 bg-white rounded-lg border border-ok_main-600 focus-within:border-ok_main-900 focus-within:hover:border-ok_main-900 hover:border-ok_main-400 transition-colors duration-300"
-                      }
-                    >
-                      <input
-                        type="text"
-                        placeholder={"Email"}
-                        className={
-                          "flex-1 outline-none bg-transparent placeholder:text-ok_main-700/30 caret-ok_main-700"
-                        }
-                      />
-                      <button
-                        type={"submit"}
-                        className={
-                          "bg-gradient-to-br from-ok_orange-300 to-ok_orange-400 text-white font-bold px-4 py-2"
-                        }
-                      >
-                        Send
-                      </button>
-                    </form>
+                    <HeroEmailForm />
                   </div>
                 </div>
               </div>
@@ -134,6 +134,6 @@ export function Hero() {
           </div>
         </div>
       </Container>
-    </section>
+    </MotionSection>
   );
 }

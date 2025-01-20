@@ -36,7 +36,7 @@ export function ButtonBase<T>(props: ButtonBaseProps<T>) {
       disabled={loading || disabled}
       className={twMerge(
         "flex items-center justify-center gap-x-1.5",
-        className?.button
+        className?.button,
       )}
       {...restProps}
     >

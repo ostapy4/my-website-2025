@@ -14,3 +14,9 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+@layer components {
+  .btn-default {
+    @apply bg-gradient-to-br from-ok_orange-300 to-ok_orange-400 px-4 py-2 font-bold text-white;
+  }
+}
