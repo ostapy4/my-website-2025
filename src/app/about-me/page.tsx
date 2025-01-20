@@ -1,13 +1,10 @@
-import { Container } from "common";
+import { Info, PageTitle } from "components/About";
 
 export default function AboutMePage() {
   return (
-    <section>
-      <Container>
-        <div className={"py-32 text-center"}>
-          The page is currently under development.
-        </div>
-      </Container>
-    </section>
+    <>
+      <PageTitle />
+      <Info />
+    </>
   );
 }
