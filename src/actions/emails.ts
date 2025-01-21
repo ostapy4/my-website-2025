@@ -3,7 +3,7 @@
 import { Resend } from "resend";
 import { z } from "zod";
 
-import { EmailTemplate } from "components/email-template";
+import { EmailTemplate } from "components/EmailTemplate";
 
 import { emailSchema } from "utils/zod-schemas";
 
