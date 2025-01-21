@@ -20,7 +20,7 @@ export const send_email = async (
 
   try {
     const { error } = await resend.emails.send({
-      from: "Ostap Konashuk <stadnyk.andy@gmail.com>",
+      from: "Ostap Konashuk <no-reply@website-testing.website>",
       // to: ["ostap.konashuk@gmail.com"],
       to: ["stadnyk.andy@gmail.com"],
       subject: "Test Free Lesson",
