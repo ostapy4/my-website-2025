@@ -21,8 +21,8 @@ export const send_email = async (
   try {
     const { error } = await resend.emails.send({
       from: "Ostap Konashuk <no-reply@website-testing.website>",
-      // to: ["ostap.konashuk@gmail.com"],
-      to: ["stadnyk.andy@gmail.com"],
+      to: ["ostap.konashuk@gmail.com"],
+      //   to: ["stadnyk.andy@gmail.com"],
       subject: "Test Free Lesson",
       react: EmailTemplate({
         email: parsedData.data.email,
