@@ -1,17 +1,16 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { send_email } from "actions/emails";
 import { FormProvider, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 import { FormTextInput } from "common/FormInputs";
 import { Button } from "common/UI";
 
 import { getDefaults } from "utils/zod";
-
-export const emailSchema = z.object({
-  email: z.string().email().default(""),
-});
+import { emailSchema } from "utils/zod-schemas";
 
 type Form = z.infer<typeof emailSchema>;
 export function HeroEmailForm() {
@@ -20,8 +19,22 @@ export function HeroEmailForm() {
     defaultValues: getDefaults(emailSchema),
   });
 
-  function onSubmit(data: Form) {
-    return data;
+  async function onSubmit(data: Form) {
+    try {
+      const res = await send_email(data);
+      if (res?.success) {
+        toast.success(res.success);
+      }
+      if (res?.error) {
+        toast.error(res.error);
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      }
+    } finally {
+      form.reset();
+    }
   }
   return (
     <FormProvider {...form}>

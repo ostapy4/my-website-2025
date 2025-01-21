@@ -1,9 +1,9 @@
-import { Info, PageTitle } from "components/About";
+import { Info, Welcome } from "components/About";
 
 export default function AboutMePage() {
   return (
     <>
-      <PageTitle />
+      <Welcome />
       <Info />
     </>
   );
