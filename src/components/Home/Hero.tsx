@@ -5,11 +5,13 @@ import { BsFillCheckSquareFill } from "react-icons/bs";
 import { HeroEmailForm } from "components/Forms/HeroEmailForm";
 import KeyIMG from "components/Home/static/music-key.svg";
 import NotesIMG from "components/Home/static/notes.svg";
-import OstapIMG from "components/Home/static/ostap.jpg";
+
+import { prismaDB } from "lib/db";
 
 const features = ["Accordion lessons", "Sheet music", "Audio transcription"];
 
-export function Hero() {
+export async function Hero() {
+  const data = await prismaDB.mainImage.findFirst();
   return (
     <MotionSection
       initial={{ opacity: 0, x: -30 }}
@@ -34,12 +36,14 @@ export function Hero() {
                   "relative aspect-[4/3] flex-1 overflow-hidden rounded-3xl"
                 }
               >
-                <Image
-                  src={OstapIMG}
-                  alt={"Ostap Konashuk"}
-                  fill
-                  className={"object-cover object-top saturate-50"}
-                />
+                {data && (
+                  <Image
+                    src={data.image}
+                    alt={"Ostap Konashuk"}
+                    fill
+                    className={"object-cover object-top saturate-50"}
+                  />
+                )}
               </div>
               <div
                 className={

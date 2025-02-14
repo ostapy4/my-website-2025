@@ -6,20 +6,17 @@ import { useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import AccordionIMG from "resources/accordion.png";
 
-import IMG1 from "./static/photo-1.jpg";
-import IMG2 from "./static/photo-2.jpg";
-import IMG3 from "./static/photo-3.jpeg";
-import IMG4 from "./static/photo-4.jpeg";
-import IMG5 from "./static/photo-5.jpeg";
-import IMG6 from "./static/photo-6.jpeg";
-import IMG7 from "./static/photo-7.jpg";
-import IMG8 from "./static/photo-8.jpg";
-
 import "keen-slider/keen-slider.min.css";
 
-const images = [IMG1, IMG2, IMG3, IMG4, IMG5, IMG6, IMG7, IMG8];
+type SliderProps = {
+  data: {
+    id: string;
+    image: string;
+    galleryId: string;
+  }[];
+};
 
-export const Slider = () => {
+export const Slider = ({ data }: SliderProps) => {
   const [details, setDetails] = useState<TrackDetails | null>(null);
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
@@ -43,34 +40,35 @@ export const Slider = () => {
     };
   }
 
+  if (!data || !data.length) return null;
+
   return (
     <div
       ref={sliderRef}
-      className={"keen-slider relative aspect-[3/4] rounded-3xl bg-ok_main-100/50 sm:aspect-[5/4] md:aspect-[16/9] lg:rounded-[42px]"}
+      className={
+        "keen-slider relative aspect-[3/4] rounded-3xl sm:aspect-[5/4] md:aspect-[16/9] lg:rounded-[42px]"
+      }
     >
       <Image
         src={AccordionIMG}
         alt={"Accordion"}
         fill
-        className={"z-0 object-contain p-8 opacity-10 saturate-0"}
+        className={"z-0 object-contain p-8 opacity-5 saturate-0"}
       />
-      {images.map((src, idx) => (
-        <div key={idx} className={"keen-slider__slide z-10 flex"}>
-          <div style={scaleStyle(idx)} className={"relative w-full"}>
+      {data.map((i, Idx) => (
+        <div key={i.id} className={"keen-slider__slide z-10 flex"}>
+          <div style={scaleStyle(Idx)} className={"relative w-full"}>
             <Image
-              src={src}
+              src={i.image}
               alt={"Photo"}
               fill
-              className={"object-cover saturate-[.8] sm:object-contain"}
+              className={
+                "rounded-2xl object-cover saturate-[.8] sm:object-contain"
+              }
             />
           </div>
         </div>
       ))}
-      <div
-        className={
-          "pointer-events-none absolute inset-0 z-50 rounded-3xl shadow-[inset_0_0_60px_rgb(69,41,37,.3)] lg:rounded-[42px]"
-        }
-      />
       <button
         onClick={() => instanceRef.current?.prev()}
         className={

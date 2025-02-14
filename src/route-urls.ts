@@ -8,3 +8,11 @@ export const MainUrls = {
   // getPrivacy: () => "/privacy",
   // getCookies: () => "/cookies",
 };
+
+export const AdminUrls = {
+  _getRoot: () => "/cms/admin",
+  getAboutMe: () => `${AdminUrls._getRoot()}/about-me`,
+  getAcccordionLessons: () => `${AdminUrls._getRoot()}/accordion-lessons`,
+  getSheetMusic: () => `${AdminUrls._getRoot()}/sheet-music`,
+  getContacts: () => `${AdminUrls._getRoot()}/contacts`,
+};

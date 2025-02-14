@@ -1,10 +1,10 @@
-import { cn } from "utils/cn";
-
 import { ButtonBase, ButtonBaseProps } from "./ButtonBase";
+
+import { cn } from "utils/cn";
 
 export type ButtonProps<T> = {
   size?: "small" | "normal" | "large";
-  colorVariant?: "primary" | "secondary";
+  colorVariant?: "primary" | "cms" | "danger" | "cancel";
   fullWidth?: boolean;
 } & ButtonBaseProps<T>;
 
@@ -24,7 +24,7 @@ export function Button<T>(props: ButtonProps<T>) {
       loading={loading}
       className={{
         button: cn(
-          "cursor-pointer justify-center rounded-lg text-center font-bold transition-[color,transform] disabled:cursor-not-allowed",
+          "flex cursor-pointer justify-center rounded-lg text-center font-bold transition-all disabled:cursor-not-allowed",
           {
             "disabled:opacity-50": !loading,
           },
@@ -35,8 +35,28 @@ export function Button<T>(props: ButtonProps<T>) {
             // Primary
             "bg-gradient-to-br from-ok_orange-300 to-ok_orange-400 text-white":
               colorVariant === "primary",
-            "hover:text-ok_main-50 disabled:hover:text-white sm:active:scale-95":
+            "hover:opacity-90 disabled:hover:opacity-100 sm:active:scale-95":
               colorVariant === "primary" && !loading,
+          },
+          {
+            // CMS
+            "bg-gradient-to-br from-lime-600 to-lime-800 text-white":
+              colorVariant === "cms",
+            "hover:opacity-90 disabled:hover:opacity-100 sm:active:scale-95":
+              colorVariant === "cms" && !loading,
+          },
+          {
+            // Danger
+            "bg-gradient-to-br from-red-500 to-red-600 text-white":
+              colorVariant === "danger",
+            "hover:opacity-90 disabled:hover:opacity-100 sm:active:scale-95":
+              colorVariant === "danger" && !loading,
+          },
+          {
+            // Cancel
+            "bg-gray-400 text-white": colorVariant === "cancel",
+            "hover:bg-gray-500 disabled:hover:bg-gray-400 sm:active:scale-95":
+              colorVariant === "cancel" && !loading,
           },
           {
             "w-full": fullWidth,

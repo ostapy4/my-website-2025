@@ -1,10 +1,15 @@
+import { Slider } from "./Slider";
 import { Container, MotionDiv, Title } from "common";
 
-import { Slider } from "./Slider";
+import { prismaDB } from "lib/db";
 
-export function Gallery() {
+export async function Gallery() {
+  const data = await prismaDB.gallery.findFirst({ include: { images: true } });
+
+  if (!data) return null;
+
   return (
-    <section className={"bg-ok_main-50 py-12"}>
+    <section className={"bg-ok_main-100 py-12"}>
       <Container>
         <div>
           <MotionDiv
@@ -14,7 +19,7 @@ export function Gallery() {
             viewport={{ once: true }}
             className={"mb-6 md:mb-8 lg:mb-10"}
           >
-            <Title size={"6xl"}>Gallery</Title>
+            <Title size={"6xl"}>{data?.title}</Title>
           </MotionDiv>
           <MotionDiv
             initial={{ opacity: 0, x: -30 }}
@@ -22,13 +27,7 @@ export function Gallery() {
             transition={{ duration: 0.8, delay: 0.5 }}
             viewport={{ once: true }}
           >
-            <div
-              className={
-                "rounded-3xl shadow-[0_0_20px_rgba(110,58,34,.4)] lg:rounded-[42px]"
-              }
-            >
-              <Slider />
-            </div>
+            <Slider data={data?.images} />
           </MotionDiv>
         </div>
       </Container>

@@ -35,13 +35,13 @@ export function ButtonBase<T>(props: ButtonBaseProps<T>) {
       onClick={onClick}
       disabled={loading || disabled}
       className={twMerge(
-        "flex items-center justify-center gap-x-1.5",
+        "flex items-center justify-center gap-x-2",
         className?.button,
       )}
       {...restProps}
     >
       {startIcon && loading ? (
-        <LoadingIcon className={(className?.loadingIcon, "text-ok_main-300")} />
+        <LoadingIcon className={`text-ok_main-300 ${className?.loadingIcon}`} />
       ) : (
         startIcon
       )}
@@ -54,7 +54,7 @@ export function ButtonBase<T>(props: ButtonBaseProps<T>) {
             }
           >
             <LoadingIcon
-              className={(className?.loadingIcon, "text-ok_main-300")}
+              className={`text-ok_main-300 ${className?.loadingIcon}`}
             />
           </span>
           <span className={"opacity-0"}>{children}</span>
@@ -64,7 +64,7 @@ export function ButtonBase<T>(props: ButtonBaseProps<T>) {
       )}
 
       {endIcon && loading ? (
-        <LoadingIcon className={(className?.loadingIcon, "text-ok_main-300")} />
+        <LoadingIcon className={`text-ok_main-300 ${className?.loadingIcon}`} />
       ) : (
         endIcon
       )}

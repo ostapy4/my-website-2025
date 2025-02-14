@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Home
+
+model MainImage {
+  id    String @id @default(cuid())
+  image String
+}
+
+model Image {
+  id        String  @id @default(cuid())
+  image     String
+  galleryId String
+  gallery   Gallery @relation(fields: [galleryId], references: [id], onDelete: Cascade)
+}
+
+model Gallery {
+  id     String  @id @default(cuid())
+  title  String
+  images Image[]
+}
+
+// About
+
+model Section {
+  id      String   @id @default(uuid())
+  header  String
+  details Detail[] @relation("SectionDetails")
+
+  @@map("sections")
+}
+
+model Detail {
+  id          String   @id @default(uuid())
+  title       String
+  description String[]
+  image       String
+  sectionId   String
+  section     Section  @relation("SectionDetails", fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@map("details")
+}

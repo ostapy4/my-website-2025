@@ -6,16 +6,11 @@
   "importOrder": [
     "^app/(.*)$",
     "^(common|components)/(.*)$",
-    "^(utils)/(.*)$",
-
+    "^(actions|lib|utils)/(.*)$",
     "^(route-urls)$",
-
-    "^(.|..)/(?!((.|..)\/)?(styles|static)\/)(.*)$",
-    "^((.|..)\/)?static/(.*)$",
-
-    "^(?!((.|..)\/)?styles\/)(.*)css(.*)",
-    "^styles/(.*).css$",
-    "^(.|..)/styles/(.*).css$"
+    "^(static)/(.*)$",
+    "^(?!styles/)(.*)css(.*)",
+    "^styles/(.*).css$"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true

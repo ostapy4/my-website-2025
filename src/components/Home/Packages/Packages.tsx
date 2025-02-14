@@ -1,6 +1,5 @@
-import { Container, MotionDiv, Title } from "common";
-
 import { PackageCard } from "./PackageCard";
+import { Container, MotionDiv, Title } from "common";
 
 const plans = [
   {

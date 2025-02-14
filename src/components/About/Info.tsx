@@ -1,67 +1,25 @@
 import { Container, Title } from "common";
+import Image from "next/image";
 import { GoDash } from "react-icons/go";
 
-const data = [
-  {
-    id: "lin986sfgs6fdgsdfg",
-    header: "Education",
-    info: [
-      {
-        title: "National Music Academy of Ukraine (2009 – 2015)",
-        description: [
-          "Master’s degree with Honours (musical art master, artist-soloist-instrumentalist, concert performer, lecturer of Higher Educational Institutions of III-IV accreditation degree - Accordion)",
-          "Bachelor of music art (Accordion)",
-        ],
-      },
-      {
-        title: "Volyn State College of Culture and Art (2005 – 2009)",
-        description: [
-          "Diploma - artist of the orchestra (ensemble), Accordion, Sopilka (Recorder), leader of the orchestra and lecturer",
-        ],
-      },
-    ],
-  },
-  {
-    id: "hjkl234523v6n29570287",
-    header: "Experience",
-    info: [
-      {
-        title:
-          "Ukrainian National Orchestra of Folk Instruments (NAOFI) (2023 – 2024)",
-        description: ["Playing Accordion as part of the orchestra"],
-      },
-      {
-        title: "Kyiv Tango Orchestra (2020 – 2024)",
-        description: ["Playing Accordion as part of the quartet"],
-      },
-      {
-        title: "The Parisian Macao (2016 – 2020)",
-        description: [
-          "Performing accordion as a soloist and within a group on a daily basis at the Parisian hotel",
-          "Special events and roadshow performances within and outside of Macao",
-          "Sound technician training at the Venetian Macao",
-          "Public relations with the guests",
-        ],
-      },
-      {
-        title:
-          "Ukrainian Folklore-Ethnographic Ensemble “Kalyna” (2015 – 2016)",
-        description: [
-          "Accompaniment as an Accordionist for the dance group",
-          "Playing Sopilka and Accordion as part of the orchestra",
-        ],
-      },
-    ],
-  },
-];
+import { prismaDB } from "lib/db";
+import { cn } from "utils/cn";
 
-export function Info() {
+export async function Info() {
+  const sections = await prismaDB.section.findMany({
+    include: {
+      details: true,
+    },
+  });
+
+  if (!sections || !sections.length) return null;
+
   return (
     <section className={"mb-24"}>
       <Container>
         <div className={"space-y-16"}>
-          {data.map((block) => (
-            <Block key={block.id} data={block} />
+          {sections.map((section) => (
+            <Block key={section.id} data={section} />
           ))}
         </div>
       </Container>
@@ -71,33 +29,61 @@ export function Info() {
 
 type BlockProps = {
   data: {
+    id: string;
     header: string;
-    info: { title: string; description: string[] }[];
+    details: {
+      id: string;
+      title: string;
+      description: string[];
+      image: string;
+      sectionId: string;
+    }[];
   };
 };
 export function Block({ data }: BlockProps) {
-  const { header, info } = data;
+  const { header, details = [] } = data;
   return (
     <div>
-      <Title component={"h3"} className={"mb-5"}>
+      <Title component={"h3"} className={"mb-12"}>
         {header}
       </Title>
-      <div className={"space-y-4"}>
-        {info.map(({ title, description }, Idx) => (
-          <div key={title + Idx}>
-            <Title component={"h4"} size={"3xl"} className={"mb-2"}>
-              {title}
-            </Title>
-            <ul className={"space-y-3"}>
-              {description.map((p) => (
-                <li key={p}>
-                  <p className={"text-ok_main-500"}>
-                    <GoDash className={"mx-3 inline-block text-ok_main-600"} />
-                    {p}
-                  </p>
-                </li>
-              ))}
-            </ul>
+      <div className={"space-y-6"}>
+        {details.map(({ id, title, description, image }, Idx) => (
+          <div
+            key={id}
+            className={cn("flex gap-x-4", {
+              "flex-row-reverse": Idx % 2 !== 0,
+            })}
+          >
+            <div className={"flex-1"}>
+              <Title component={"h4"} size={"3xl"} className={"mb-2"}>
+                {title}
+              </Title>
+              <ul className={"space-y-3"}>
+                {description.map((p) => (
+                  <li key={p}>
+                    <p className={"text-ok_main-500"}>
+                      <GoDash
+                        className={"mx-3 inline-block text-ok_main-600"}
+                      />
+                      {p}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div
+              className={
+                "relative aspect-square w-64 overflow-hidden rounded-2xl"
+              }
+            >
+              <Image
+                src={image}
+                alt={"Image"}
+                className={"object-cover"}
+                fill
+              />
+            </div>
           </div>
         ))}
       </div>
