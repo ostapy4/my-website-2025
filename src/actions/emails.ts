@@ -56,8 +56,8 @@ export const send_contacts = async (
   try {
     const { error } = await resend.emails.send({
       from: "Ostap Konashuk <no-reply@website-testing.website>",
-      //   to: ["ostap.konashuk@gmail.com"],
-      to: ["stadnyk.andy@gmail.com"],
+        to: ["ostap.konashuk@gmail.com"],
+      // to: ["stadnyk.andy@gmail.com"],
       subject: "New client Contacts",
       react: ContactsTemplate({
         ...parsedData.data,
