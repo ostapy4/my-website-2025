@@ -7,6 +7,7 @@ import { Loader } from "common/Loader";
 export default function AdminAboutPage() {
   return (
     <>
+      {/* Welcome section */}
       <Suspense fallback={<Loader variants={"cms"} />}>
         <InfoSection />
       </Suspense>
