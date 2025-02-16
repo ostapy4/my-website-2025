@@ -6,18 +6,21 @@ const plans = [
     title: "Trial Lesson",
     description: "The first 30-minute lesson focuses on introductions",
     price: "FREE",
+    plan: "free",
   },
   {
     title: "Full Lesson",
     description:
       "A full-hour lesson aimed at uncovering your desires and goals.",
     price: "$35",
+    plan: "full-lesson",
   },
   {
     title: "3 lessons",
     description: "A 3-lesson program to get you started with the fundamentals",
     price: "$100",
     fullPrice: "$105",
+    plan: "3-lessons",
   },
   {
     title: "10 lessons",
@@ -25,6 +28,7 @@ const plans = [
       "A 10-lesson program combining a comprehensive approach with specific, measurable results",
     price: "$330",
     fullPrice: "$350",
+    plan: "10-lessons",
   },
 ];
 

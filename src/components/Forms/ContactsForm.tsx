@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Container, Title } from "common";
+import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
@@ -14,11 +15,21 @@ import { getDefaults } from "utils/zod";
 import { contactsSchema } from "utils/zod-schemas";
 
 type Form = z.infer<typeof contactsSchema>;
-export function ContactsForm() {
+
+type ContactsFormProps = {
+  plan?: string;
+};
+export function ContactsForm({ plan }: ContactsFormProps) {
   const form = useForm({
     resolver: zodResolver(contactsSchema),
     defaultValues: getDefaults(contactsSchema),
   });
+
+  useEffect(() => {
+    if (plan) {
+      form.setValue("plan", plan);
+    }
+  }, [plan, form]);
 
   async function onSubmit(data: Form) {
     try {
@@ -43,7 +54,16 @@ export function ContactsForm() {
         <div className={"py-8"}>
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              <Title className={"mb-6 text-center"}>Contact Form</Title>
+              <Title className={"mb-6 text-center"}>
+                Contact{" "}
+                <span
+                  className={
+                    "bg-gradient-to-br from-ok_orange-300 to-ok_orange-500 bg-clip-text text-transparent"
+                  }
+                >
+                  Ostap
+                </span>
+              </Title>
               <div
                 className={
                   "mx-auto flex flex-col gap-x-2 gap-y-3 md:max-w-screen-sm"
@@ -64,17 +84,19 @@ export function ContactsForm() {
                   placeholder={"Phone"}
                   label={"Phone"}
                 />
-                <FormSelectInput
-                  fieldName={"plan"}
-                  display={"Choose plan"}
-                  label={"Plan"}
-                  options={[
-                    { value: "free", label: "Free" },
-                    { value: "full-lesson", label: "Full lesson" },
-                    { value: "3-lessons", label: "3 Lessons" },
-                    { value: "10-lessons", label: "10 Lessons" },
-                  ]}
-                />
+                {plan && (
+                  <FormSelectInput
+                    fieldName={"plan"}
+                    display={"Choose plan"}
+                    label={"Plan"}
+                    options={[
+                      { value: "free", label: "Free" },
+                      { value: "full-lesson", label: "Full lesson" },
+                      { value: "3-lessons", label: "3 Lessons" },
+                      { value: "10-lessons", label: "10 Lessons" },
+                    ]}
+                  />
+                )}
 
                 <FormTextInput
                   fieldName={"message"}

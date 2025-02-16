@@ -1,13 +1,11 @@
-import { Container } from "common";
+import { Packages } from "components/Home";
+import { Intro } from "components/Lessons";
 
 export default function AccordionLessonsPage() {
   return (
-    <section>
-      <Container>
-        <div className={"py-32 text-center"}>
-          The page is currently under development.
-        </div>
-      </Container>
-    </section>
+    <>
+      <Intro />
+      <Packages />
+    </>
   );
 }

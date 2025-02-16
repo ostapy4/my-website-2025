@@ -44,15 +44,15 @@ export function Block({ data }: BlockProps) {
   const { header, details = [] } = data;
   return (
     <div>
-      <Title component={"h3"} className={"mb-12"}>
+      <Title component={"h3"} className={"mb-8 md:mb-12"}>
         {header}
       </Title>
-      <div className={"space-y-6"}>
+      <div className={"space-y-12"}>
         {details.map(({ id, title, description, image }, Idx) => (
           <div
             key={id}
-            className={cn("flex gap-x-4", {
-              "flex-row-reverse": Idx % 2 !== 0,
+            className={cn("flex flex-col gap-x-4 gap-y-6 md:flex-row", {
+              "md:flex-row-reverse": Idx % 2 !== 0,
             })}
           >
             <div className={"flex-1"}>
@@ -74,7 +74,7 @@ export function Block({ data }: BlockProps) {
             </div>
             <div
               className={
-                "relative aspect-square w-64 overflow-hidden rounded-2xl"
+                "relative aspect-square w-full max-w-screen-sm self-center overflow-hidden rounded-2xl md:max-w-64"
               }
             >
               <Image

@@ -1,9 +1,16 @@
+import Contacts from "components/Contacts/Contacts";
 import { ContactsForm } from "components/Forms/ContactsForm";
 
-export default function ContactsPage() {
+export default async function ContactsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ plan?: string }>;
+}) {
+  const { plan } = await searchParams;
   return (
     <>
-      <ContactsForm />
+      <Contacts />
+      <ContactsForm plan={plan} />
     </>
   );
 }

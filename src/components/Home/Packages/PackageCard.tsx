@@ -7,11 +7,14 @@ import { Button } from "common/UI";
 
 import { cn } from "utils/cn";
 
+import { MainUrls } from "route-urls";
+
 type Plan = {
   title: string;
   description: string;
   price: string;
   fullPrice?: string;
+  plan?: string;
 };
 
 type PackageCardProps = {
@@ -78,7 +81,10 @@ export const PackageCard = ({ plan, classNames }: PackageCardProps) => {
         </p>
       </div>
       <div className={"w-full px-2 py-3"}>
-        <Link href={"/"} className={"block"}>
+        <Link
+          href={`${MainUrls.getContacts()}?plan=${plan?.plan}`}
+          className={"block"}
+        >
           <Button fullWidth className={{ button: classNames?.button }}>
             Book
           </Button>

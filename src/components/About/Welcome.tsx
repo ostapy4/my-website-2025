@@ -14,7 +14,9 @@ export function Welcome() {
           <Title size={"6xl"} className={"mb-8 text-ok_main-700"}>
             About me
           </Title>
-          <div className={"mx-auto max-w-[860px] space-y-3 text-xl"}>
+          <div
+            className={"mx-auto max-w-[860px] space-y-3 md:text-lg lg:text-xl"}
+          >
             {text.map((p) => (
               <p key={p.slice(0, 20)}>{p}</p>
             ))}
