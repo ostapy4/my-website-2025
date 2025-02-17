@@ -93,7 +93,7 @@ export function Header() {
       >
         <Container>
           <div className={"flex items-center justify-between"}>
-            <Link href={MainUrls.getHome()}>
+            <Link href={MainUrls.getHome()} className={"cursor-pointer"}>
               <Image src={Logo} alt={"Logo"} />
             </Link>
             <nav

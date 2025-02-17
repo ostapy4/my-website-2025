@@ -17,6 +17,15 @@ export const VideoCard: React.FC<VideoCardProps> = ({ url }) => {
   }, [mounted]);
   if (!url) return null;
   return (
-    <>{mounted && <ReactPlayer url={url} width={"auto"} height={"100%"} />}</>
+    <>
+      {mounted && (
+        <ReactPlayer
+          playsinline={true}
+          url={url}
+          width={"auto"}
+          height={"100%"}
+        />
+      )}
+    </>
   );
 };

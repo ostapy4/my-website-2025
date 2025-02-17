@@ -17,7 +17,7 @@ export async function Info() {
   return (
     <section className={"mb-24"}>
       <Container>
-        <div className={"space-y-16"}>
+        <div className={"divide-y-[1px] divide-ok_main-700"}>
           {sections.map((section) => (
             <Block key={section.id} data={section} />
           ))}
@@ -43,7 +43,7 @@ type BlockProps = {
 export function Block({ data }: BlockProps) {
   const { header, details = [] } = data;
   return (
-    <div>
+    <div className={"py-12"}>
       <MotionDiv
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -84,18 +84,19 @@ export function Block({ data }: BlockProps) {
                 ))}
               </ul>
             </div>
-            <div
+            {/* <div
               className={
-                "relative aspect-square w-full max-w-screen-sm self-center overflow-hidden rounded-2xl md:max-w-64"
+                "relative aspect-square w-full max-w-screen-sm self-center md:max-w-64"
               }
             >
-              <Image
-                src={image}
-                alt={"Image"}
-                className={"object-cover"}
-                fill
-              />
-            </div>
+            </div> */}
+            <Image
+              src={image}
+              alt={"Image"}
+              width={340}
+              height={260}
+              className={"mx-auto rounded-xl"}
+            />
           </MotionDiv>
         ))}
       </div>

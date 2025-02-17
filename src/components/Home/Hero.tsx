@@ -41,7 +41,7 @@ export async function Hero() {
                     src={data.image}
                     alt={"Ostap Konashuk"}
                     fill
-                    className={"object-cover object-top saturate-50"}
+                    className={"object-cover object-top saturate-[.9]"}
                     priority
                   />
                 )}

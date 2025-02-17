@@ -1,8 +1,7 @@
 "use client";
 
-import { TrackDetails, useKeenSlider } from "keen-slider/react";
+import { useKeenSlider } from "keen-slider/react";
 import Image from "next/image";
-import { useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import AccordionIMG from "resources/accordion.png";
 
@@ -17,28 +16,28 @@ type SliderProps = {
 };
 
 export const Slider = ({ data }: SliderProps) => {
-  const [details, setDetails] = useState<TrackDetails | null>(null);
+  // const [details, setDetails] = useState<TrackDetails | null>(null);
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     loop: true,
     defaultAnimation: { duration: 1500 },
     dragSpeed: 0.1,
-    detailsChanged(s) {
-      setDetails(s.track.details);
-    },
+    // detailsChanged(s) {
+    //   setDetails(s.track.details);
+    // },
     initial: 2,
   });
 
-  function scaleStyle(idx: number) {
-    if (!details) return {};
-    const slide = details.slides[idx];
-    const scale_size = 0.7;
-    const scale = 1 - (scale_size - scale_size * slide.portion);
-    return {
-      transform: `scale(${scale})`,
-      WebkitTransform: `scale(${scale})`,
-    };
-  }
+  // function scaleStyle(idx: number) {
+  //   if (!details) return {};
+  //   const slide = details.slides[idx];
+  //   const scale_size = 0.7;
+  //   const scale = 1 - (scale_size - scale_size * slide.portion);
+  //   return {
+  //     transform: `scale(${scale})`,
+  //     WebkitTransform: `scale(${scale})`,
+  //   };
+  // }
 
   if (!data || !data.length) return null;
 
@@ -46,7 +45,7 @@ export const Slider = ({ data }: SliderProps) => {
     <div
       ref={sliderRef}
       className={
-        "keen-slider relative aspect-[3/4] rounded-3xl sm:aspect-[5/4] md:aspect-[16/9] lg:rounded-[42px]"
+        "keen-slider relative aspect-[3/4] sm:aspect-[5/4] md:aspect-video"
       }
     >
       <Image
@@ -56,15 +55,18 @@ export const Slider = ({ data }: SliderProps) => {
         className={"z-0 object-contain p-8 opacity-5 saturate-0"}
         aria-hidden
       />
-      {data.map((i, Idx) => (
+      {data.map((i) => (
         <div key={i.id} className={"keen-slider__slide z-10 flex"}>
-          <div style={scaleStyle(Idx)} className={"relative w-full"}>
+          <div
+            // style={scaleStyle(Idx)}
+            className={"relative w-full"}
+          >
             <Image
               src={i.image}
               alt={"Photo"}
               fill
               className={
-                "rounded-2xl object-cover saturate-[.8] sm:object-contain"
+                "rounded-3xl object-cover saturate-[.9] sm:object-contain"
               }
             />
           </div>

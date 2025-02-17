@@ -30,7 +30,7 @@ export default function Contacts() {
           >
             <div
               className={
-                "relative aspect-video flex-1 overflow-hidden rounded-xl md:mr-4"
+                "relative aspect-[4/3] flex-1 overflow-hidden rounded-xl md:mr-4"
               }
             >
               <Image
@@ -43,7 +43,7 @@ export default function Contacts() {
             </div>
             <div className={"flex-1"}>
               <Title size={"2xl"} className={"mb-4 uppercase"}>
-                Ostap Konashuk Music
+                Ostap Konashuk
               </Title>
               <div>
                 <ul>
