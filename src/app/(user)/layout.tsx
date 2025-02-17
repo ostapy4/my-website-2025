@@ -9,7 +9,7 @@ import "lenis/dist/lenis.css";
 
 import "styles/tailwind.css";
 
-// export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 const cormorant = Cormorant_Infant({
   variable: "--font-cormorant",

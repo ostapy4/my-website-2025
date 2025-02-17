@@ -42,6 +42,7 @@ export async function Hero() {
                     alt={"Ostap Konashuk"}
                     fill
                     className={"object-cover object-top saturate-50"}
+                    priority
                   />
                 )}
               </div>
@@ -56,6 +57,8 @@ export async function Hero() {
                   className={
                     "pointer-events-none absolute left-1/2 top-1/2 -z-0 w-full -translate-x-1/2 -translate-y-1/2 select-none opacity-10 lg:top-1/3"
                   }
+                  priority
+                  aria-hidden
                 />
                 <Title
                   component={"h1"}
@@ -103,6 +106,8 @@ export async function Hero() {
                     className={
                       "absolute -left-2 top-0 max-w-10 rotate-45 select-none opacity-70"
                     }
+                    priority
+                    aria-hidden
                   />
                   <Image
                     src={KeyIMG}
@@ -110,6 +115,8 @@ export async function Hero() {
                     className={
                       "absolute left-[40%] top-[28%] max-w-10 -rotate-[20deg] select-none opacity-70"
                     }
+                    priority
+                    aria-hidden
                   />
                   <Image
                     src={KeyIMG}
@@ -117,6 +124,8 @@ export async function Hero() {
                     className={
                       "absolute -top-[5%] right-[10%] max-w-10 rotate-[55deg] select-none opacity-70"
                     }
+                    priority
+                    aria-hidden
                   />
                   <div className={"z-10 bg-white/60 p-4 backdrop-blur-sm"}>
                     <p className={"mb-4 text-center text-xl text-ok_main-600"}>

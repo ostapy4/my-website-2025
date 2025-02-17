@@ -54,6 +54,7 @@ export const Slider = ({ data }: SliderProps) => {
         alt={"Accordion"}
         fill
         className={"z-0 object-contain p-8 opacity-5 saturate-0"}
+        aria-hidden
       />
       {data.map((i, Idx) => (
         <div key={i.id} className={"keen-slider__slide z-10 flex"}>

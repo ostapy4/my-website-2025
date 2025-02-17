@@ -1,4 +1,4 @@
-import { Container, Title } from "common";
+import { Container, MotionDiv, Title } from "common";
 
 const text = [
   "Ostap is a professional accordionist and music teacher, a graduate of the National Music Academy, with over 28 years of experience playing the accordion.",
@@ -11,16 +11,32 @@ export function Welcome() {
     <section>
       <Container>
         <div className={"py-12 text-center"}>
-          <Title size={"6xl"} className={"mb-8 text-ok_main-700"}>
-            About me
-          </Title>
-          <div
-            className={"mx-auto max-w-[860px] space-y-3 md:text-lg lg:text-xl"}
+          <MotionDiv
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
-            {text.map((p) => (
-              <p key={p.slice(0, 20)}>{p}</p>
-            ))}
-          </div>
+            <Title size={"6xl"} className={"mb-8 text-ok_main-700"}>
+              About me
+            </Title>
+          </MotionDiv>
+          <MotionDiv
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div
+              className={
+                "mx-auto max-w-[860px] space-y-3 md:text-lg lg:text-xl"
+              }
+            >
+              {text.map((p) => (
+                <p key={p.slice(0, 20)}>{p}</p>
+              ))}
+            </div>
+          </MotionDiv>
         </div>
       </Container>
     </section>

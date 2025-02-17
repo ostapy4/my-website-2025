@@ -1,4 +1,4 @@
-import { Container, Title } from "common";
+import { Container, MotionDiv, Title } from "common";
 import Image from "next/image";
 import { GoDash } from "react-icons/go";
 
@@ -44,12 +44,24 @@ export function Block({ data }: BlockProps) {
   const { header, details = [] } = data;
   return (
     <div>
-      <Title component={"h3"} className={"mb-8 md:mb-12"}>
-        {header}
-      </Title>
+      <MotionDiv
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <Title component={"h3"} className={"mb-8 md:mb-12"}>
+          {header}
+        </Title>
+      </MotionDiv>
+
       <div className={"space-y-12"}>
         {details.map(({ id, title, description, image }, Idx) => (
-          <div
+          <MotionDiv
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
             key={id}
             className={cn("flex flex-col gap-x-4 gap-y-6 md:flex-row", {
               "md:flex-row-reverse": Idx % 2 !== 0,
@@ -84,7 +96,7 @@ export function Block({ data }: BlockProps) {
                 fill
               />
             </div>
-          </div>
+          </MotionDiv>
         ))}
       </div>
     </div>

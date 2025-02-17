@@ -1,18 +1,18 @@
-import { Suspense } from "react";
-
-import { Loader } from "common/Loader";
-import { Gallery, Hero } from "components/Home";
-import { Packages } from "components/Home/Packages/Packages";
+import {
+  Gallery,
+  Hero,
+  Packages,
+  Reviews,
+  VideoGallery,
+} from "components/Home";
 
 export default function Home() {
   return (
     <>
-      <Suspense fallback={<Loader />}>
-        <Hero />
-      </Suspense>
-      <Suspense fallback={<Loader />}>
-        <Gallery />
-      </Suspense>
+      <Hero />
+      <Gallery />
+      <VideoGallery />
+      <Reviews />
       <Packages />
     </>
   );

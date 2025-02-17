@@ -1,4 +1,4 @@
-import { Container, Title } from "common";
+import { Container, MotionDiv, Title } from "common";
 import Link from "next/link";
 
 import { MainUrls } from "route-urls";
@@ -16,17 +16,28 @@ export function Intro() {
     <section>
       <Container>
         <div className={"py-12 text-center"}>
-          <Title size={"6xl"} className={"mb-8 text-ok_main-700"}>
-            <span
-              className={
-                "bg-gradient-to-br from-ok_orange-300 to-ok_orange-500 bg-clip-text text-transparent"
-              }
-            >
-              Accordion
-            </span>{" "}
-            Lessons Online
-          </Title>
-          <div
+          <MotionDiv
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <Title size={"6xl"} className={"mb-8 text-ok_main-700"}>
+              <span
+                className={
+                  "bg-gradient-to-br from-ok_orange-300 to-ok_orange-500 bg-clip-text text-transparent"
+                }
+              >
+                Accordion
+              </span>{" "}
+              Lessons Online
+            </Title>
+          </MotionDiv>
+          <MotionDiv
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
             className={
               "mx-auto mb-8 max-w-[960px] space-y-3 md:text-lg lg:text-xl"
             }
@@ -34,8 +45,14 @@ export function Intro() {
             {text.map((p) => (
               <p key={p.slice(0, 20)}>{p}</p>
             ))}
-          </div>
-          <div className={"md:text-lg lg:text-xl"}>
+          </MotionDiv>
+          <MotionDiv
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className={"md:text-lg lg:text-xl"}
+          >
             <span className={"font-semibold text-ok_main-700"}>
               To{" "}
               <span
@@ -64,7 +81,7 @@ export function Intro() {
               contact form
             </Link>
             .
-          </div>
+          </MotionDiv>
         </div>
       </Container>
     </section>

@@ -1,4 +1,4 @@
-import { Container, Title } from "common";
+import { Container, MotionDiv, Title } from "common";
 import Image from "next/image";
 import Link from "next/link";
 import OstapIMG from "resources/ostap.png";
@@ -8,10 +8,26 @@ export default function Contacts() {
     <section>
       <Container>
         <div className={"py-8"}>
-          <Title size={"6xl"} className={"mb-12 text-center text-ok_main-700"}>
-            Contacts
-          </Title>
-          <div className={"flex flex-col gap-y-4 md:flex-row"}>
+          <MotionDiv
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <Title
+              size={"6xl"}
+              className={"mb-12 text-center text-ok_main-700"}
+            >
+              Contacts
+            </Title>
+          </MotionDiv>
+          <MotionDiv
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className={"flex flex-col gap-y-4 md:flex-row"}
+          >
             <div
               className={
                 "relative aspect-video flex-1 overflow-hidden rounded-xl md:mr-4"
@@ -22,6 +38,7 @@ export default function Contacts() {
                 alt={"Ostap Konashuk"}
                 fill
                 className={"object-cover"}
+                priority
               />
             </div>
             <div className={"flex-1"}>
@@ -57,7 +74,7 @@ export default function Contacts() {
                 </ul>
               </div>
             </div>
-          </div>
+          </MotionDiv>
         </div>
       </Container>
     </section>

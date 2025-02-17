@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Container, Title } from "common";
+import { Container, MotionDiv, Title } from "common";
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -54,17 +54,28 @@ export function ContactsForm({ plan }: ContactsFormProps) {
         <div className={"py-8"}>
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              <Title className={"mb-6 text-center"}>
-                Contact{" "}
-                <span
-                  className={
-                    "bg-gradient-to-br from-ok_orange-300 to-ok_orange-500 bg-clip-text text-transparent"
-                  }
-                >
-                  Ostap
-                </span>
-              </Title>
-              <div
+              <MotionDiv
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <Title className={"mb-6 text-center"}>
+                  Contact{" "}
+                  <span
+                    className={
+                      "bg-gradient-to-br from-ok_orange-300 to-ok_orange-500 bg-clip-text text-transparent"
+                    }
+                  >
+                    Ostap
+                  </span>
+                </Title>
+              </MotionDiv>
+              <MotionDiv
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
                 className={
                   "mx-auto flex flex-col gap-x-2 gap-y-3 md:max-w-screen-sm"
                 }
@@ -107,7 +118,7 @@ export function ContactsForm({ plan }: ContactsFormProps) {
                 <Button type={"submit"} className={{ button: "max-h-[46px]" }}>
                   Send
                 </Button>
-              </div>
+              </MotionDiv>
             </form>
           </FormProvider>
         </div>
