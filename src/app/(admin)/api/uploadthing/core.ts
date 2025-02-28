@@ -15,6 +15,11 @@ export const ourFileRouter = {
       maxFileCount: 5,
     },
   }).onUploadComplete(async () => {}),
+  pdfUploader: f({ pdf: { maxFileSize: "32MB" } }) 
+    .onUploadComplete(async ({ file }) => {
+      console.log("Uploaded file URL:", file);
+      return { fileUrl: file.ufsUrl };
+    }),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;

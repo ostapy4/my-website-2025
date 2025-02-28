@@ -87,7 +87,7 @@ export function GalleryForm({ data }: GalleryProps) {
               onClientUploadComplete={(res) => {
                 const files =
                   res?.map((file) => ({
-                    image: file.url,
+                    image: file.ufsUrl,
                   })) ?? [];
                 setImages((prev) => [...prev, ...files]);
               }}

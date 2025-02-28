@@ -1,13 +1,9 @@
-import { Container } from "common";
+import { SheetMusic } from "components/SheetMusic";
 
 export default async function SheetMusicPage() {
   return (
-    <section>
-      <Container>
-        <div className={"py-32 text-center"}>
-          The page is currently under development.
-        </div>
-      </Container>
-    </section>
+    <>
+      <SheetMusic />
+    </>
   );
 }

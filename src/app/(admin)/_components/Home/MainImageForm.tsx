@@ -55,7 +55,7 @@ export function MainImageForm({ data }: MainImageFormProps) {
           <UploadButton<"mainImage">
             endpoint={"mainImage"}
             onClientUploadComplete={(res) => {
-              setImage(res[0].url ?? "");
+              setImage(res[0].ufsUrl ?? "");
             }}
             onUploadError={(error: Error) => {
               console.error(`ERROR! ${error.message}`);

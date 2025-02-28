@@ -20,3 +20,13 @@
     @apply bg-gradient-to-br from-ok_orange-300 to-ok_orange-400 px-4 py-2 font-bold text-white;
   }
 }
+
+@layer components {
+  .customPage canvas {
+    @apply !h-auto !w-full;
+  }
+}
+
+div.react-pdf__Page__textContent.textLayer {
+  display: none;
+}

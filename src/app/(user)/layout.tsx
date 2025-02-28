@@ -3,9 +3,6 @@ import { Cormorant_Infant, Montserrat } from "next/font/google";
 import { Toaster } from "sonner";
 
 import { Footer, Header } from "components/Layout";
-import { LenisProvider } from "components/LenisProvider";
-
-import "lenis/dist/lenis.css";
 
 import "styles/tailwind.css";
 
@@ -44,7 +41,6 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
-        <LenisProvider />
         <Toaster
           position={"top-right"}
           richColors

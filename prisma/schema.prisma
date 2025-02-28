@@ -47,3 +47,11 @@ model Detail {
 
   @@map("details")
 }
+
+model SheetMusic {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  pdfUrl      String
+  createdAt   DateTime @default(now())
+}
