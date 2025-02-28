@@ -48,6 +48,8 @@ model Detail {
   @@map("details")
 }
 
+// Sheet Music
+
 model SheetMusic {
   id          String   @id @default(cuid())
   title       String
