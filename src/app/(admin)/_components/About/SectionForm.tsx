@@ -189,7 +189,7 @@ export function SectionForm({ data }: SectionFormProps) {
                   endpoint={"mainImage"}
                   onClientUploadComplete={(res) => {
                     if (res && res[0]) {
-                      form.setValue(`details.${index}.image`, res[0].url);
+                      form.setValue(`details.${index}.image`, res[0].ufsUrl);
                     }
                   }}
                   onUploadError={(error: Error) => {
