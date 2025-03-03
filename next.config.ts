@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
         hostname: 'zi7nqxyoik.ufs.sh',
       },
     ],
-  },};
+  },
+  experimental: {
+    turbo: {
+      resolveAlias: {
+        canvas: './empty-module.ts',
+      },
+    },
+  },
+};
 
 export default nextConfig;

@@ -54,7 +54,7 @@ export async function SheetMusic() {
                   ease: "easeInOut",
                 }}
                 key={sheet.id}
-                className={"flex flex-col items-center"}
+                className={"flex h-full flex-col items-center"}
               >
                 <SheetCard data={sheet} />
               </MotionDiv>
@@ -81,10 +81,10 @@ type SheetCardProps = {
 function SheetCard({ data }: SheetCardProps) {
   const { title, description, pdfUrl } = data;
   return (
-    <div className={"mx-auto flex w-full max-w-64 flex-col gap-y-4"}>
+    <div className={"mx-auto flex h-full w-full max-w-64 flex-col gap-y-4"}>
       <PdfViewer url={pdfUrl} />
-      <div className={"flex-1"}>
-        <Title size={"2xl"} className={"text-center"}>
+      <div className={"flex-1 space-y-2"}>
+        <Title size={"2xl"} className={"text-center !leading-none"}>
           {title}
         </Title>
         <p className={"text-sm"}>{description}</p>

@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import Logo from "resources/logo.svg";
 
-import { Loader } from "common/Loader";
+// import { Loader } from "common/Loader";
 
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
+// import "react-pdf/dist/Page/AnnotationLayer.css";
+// import "react-pdf/dist/Page/TextLayer.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -19,7 +18,7 @@ interface PdfViewerProps {
 }
 
 export function PdfViewer({ url }: PdfViewerProps) {
-  const [numPages, setNumPages] = useState<number | null>(null);
+  const [numPages, setNumPages] = useState<number>();
 
   return (
     <div
@@ -29,21 +28,25 @@ export function PdfViewer({ url }: PdfViewerProps) {
     >
       <Document
         file={url}
-        imageResourcesPath={Logo}
-        className={"!w-full !max-w-64"}
-        loading={<Loader />}
         onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+        className={"!w-full !max-w-64"}
+        // imageResourcesPath={Logo}
+        // loading={<Loader />}
+        // options={{
+        //   cMapUrl: "/cmaps/",
+        //   standardFontDataUrl: "/standard_fonts/",
+        // }}
       >
-        {Array.from(new Array(numPages), (_, index) => (
-          <Page
-            // loading={<Loader />}
-            className={
-              "!bg-greeen-200 customPage !w-full !max-w-64 !overflow-hidden"
-            }
-            key={index}
-            pageNumber={index + 1}
-          />
-        ))}
+        {numPages &&
+          Array.from({ length: numPages }).map((_, index) => (
+            <Page
+              className={
+                "customPage !w-full !max-w-64 !overflow-hidden !bg-green-200"
+              }
+              key={index}
+              pageNumber={index + 1}
+            />
+          ))}
       </Document>
     </div>
   );

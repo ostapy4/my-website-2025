@@ -1,6 +1,9 @@
+import { AuthForm } from "./_components/Auth/AuthForm";
+import { Dialog } from "./_components/Auth/Dialog";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import type { Metadata } from "next";
 import { Cormorant_Infant, Montserrat } from "next/font/google";
+import { cookies } from "next/headers";
 import { Toaster } from "sonner";
 import { extractRouterConfig } from "uploadthing/server";
 
@@ -30,11 +33,13 @@ export const metadata: Metadata = {
   description: "Ostap Konashuk admin page",
 };
 
-export default function AdminRootLayout({
+export default async function AdminRootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const isAdmin = cookieStore.get("isAdmin");
   return (
     <html lang={"en"}>
       <body
@@ -45,6 +50,9 @@ export default function AdminRootLayout({
         <Navbar />
         <main>{children}</main>
         <Toaster position={"top-right"} richColors />
+        <Dialog isOpen={!isAdmin}>
+          <AuthForm />
+        </Dialog>
       </body>
     </html>
   );
