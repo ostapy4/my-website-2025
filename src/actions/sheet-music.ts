@@ -1,26 +1,80 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+import { z } from "zod";
+
 import { prismaDB } from "lib/db";
+import { sheetsSchema } from "utils/zod-schemas";
 
-type SheetsInput = {
-  title: string;
-  description: string;
-  pdfUrl: string;
-}
+import { AdminUrls } from "route-urls";
 
-export const upload_sheets = async (data: SheetsInput) => {
-  if (!data.title || !data.description || !data.pdfUrl) {
-    throw new Error("You must provide a title, description and sheet music URL.");
+type SheetsInput = z.infer<typeof sheetsSchema>;
+
+export const upload_sheets = async (formData: SheetsInput) => {
+  const { success, data } = sheetsSchema.safeParse(formData);
+    if (!success) {
+    throw new Error(
+      "You must provide a title, description, price and sheet music URL.",
+    );
   }
 
   try {
     const sheet = await prismaDB.sheetMusic.create({
-      data,
+      data: {
+        title: data.title,
+        description: data.description,
+        price: data.price,
+        pdfUrl: data.pdfUrl,
+      },
     });
     console.log("Sheet music successfully uploaded:", sheet);
+    revalidatePath(AdminUrls.getSheetMusic());
     return sheet;
   } catch (error) {
     console.error("Error while uploading sheet music:", error);
     throw new Error("Failed to upload sheet music.");
   }
 };
+
+export async function update_sheet(formData: SheetsInput) {
+  const { success, data } = sheetsSchema.safeParse(formData);
+  if (!success) {
+    throw new Error(
+      "You must provide a title, description, price and sheet music URL.",
+    );
+  }
+  if (!data.id) {
+    throw new Error("Sheet ID is required to update a sheet.");
+  }
+  try {
+    const sheet = await prismaDB.sheetMusic.update({
+      where: {
+        id: data.id,
+      },
+      data,
+    });
+    console.log({sheet});
+    
+    revalidatePath(AdminUrls.getSheetMusic());
+    return sheet;
+  } catch (error) {
+    console.error("Error while updating sheet music:", error);
+    throw new Error("Failed to update sheet music.");
+  }
+}
+
+export async function delete_sheet(id: string) {
+  if (!id) throw new Error("Id is required to delete a sheet.");
+
+  try {
+    await prismaDB.sheetMusic.delete({
+      where: {
+        id,
+      },
+    });
+    revalidatePath(AdminUrls.getSheetMusic());
+  } catch (error) {
+    console.error("Error while deleting sheet music:", error);
+    throw new Error("Failed to delete sheet music.");
+  }
+}

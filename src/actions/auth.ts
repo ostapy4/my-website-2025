@@ -1,21 +1,24 @@
 "use server";
 
-import { cookies } from "next/headers";
-import crypto from "crypto";
-import { z } from "zod";
 import { authSchema } from "./schemas";
+import crypto from "crypto";
+import { cookies } from "next/headers";
+import { z } from "zod";
 
 type Credentials = z.infer<typeof authSchema>;
 
-export async function check_credentials(data: Credentials)  {
+export async function check_credentials(data: Credentials) {
   const parsed = authSchema.safeParse(data);
   if (!parsed.success) {
     return { error: "Invalid input data.", success: false };
   }
   const { email, password } = parsed.data;
 
-  if (email !== process.env.AUTH_EMAIL){
-    return { error: "This email doesn`t have permission for this page", success: false };
+  if (email !== process.env.AUTH_EMAIL) {
+    return {
+      error: "This email doesn`t have permission for this page",
+      success: false,
+    };
   }
 
   const storedPassword = process.env.AUTH_PASSWORD ?? "";
@@ -39,4 +42,4 @@ export async function check_credentials(data: Credentials)  {
   });
 
   return { success: true, message: "Authentication successful." };
-};
+}

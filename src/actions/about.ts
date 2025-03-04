@@ -1,9 +1,11 @@
 "use server";
 
-import { sectionSchema } from "app/(admin)/_components/About/SectionForm";
-import { prismaDB } from "lib/db";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+
+import { sectionSchema } from "app/(admin)/_components/About/SectionForm";
+
+import { prismaDB } from "lib/db";
 
 type AboutInfo = z.infer<typeof sectionSchema>;
 
@@ -29,14 +31,13 @@ export const create_info_section = async (data: AboutInfo) => {
     });
 
     console.log("New section successfully created:", newSection);
-    revalidatePath("/cms/admin/about-me")
+    revalidatePath("/cms/admin/about-me");
     return newSection;
   } catch (error) {
     console.error("Error while creating the section:", error);
     throw new Error("Failed to create the section.");
   }
 };
-
 
 export const update_info_section = async (data: AboutInfo) => {
   if (!data.id) {
@@ -63,14 +64,13 @@ export const update_info_section = async (data: AboutInfo) => {
     });
 
     console.log("Section successfully updated:", updatedSection);
-    revalidatePath("/cms/admin/about-me")
+    revalidatePath("/cms/admin/about-me");
     return updatedSection;
   } catch (error) {
     console.error("Error while updating the section:", error);
     throw new Error("Failed to update the section.");
   }
 };
-
 
 export const delete_info_section = async (sectionId: string) => {
   if (!sectionId) {

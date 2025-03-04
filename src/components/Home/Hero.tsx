@@ -1,10 +1,10 @@
 import { Container, MotionSection, Title } from "common";
 import Image from "next/image";
 import { BsFillCheckSquareFill } from "react-icons/bs";
+import KeyIMG from "resources/music-key.svg";
+import NotesIMG from "resources/notes.svg";
 
 import { HeroEmailForm } from "components/Forms/HeroEmailForm";
-import KeyIMG from "components/Home/static/music-key.svg";
-import NotesIMG from "components/Home/static/notes.svg";
 
 import { prismaDB } from "lib/db";
 

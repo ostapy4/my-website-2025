@@ -81,14 +81,26 @@ export const PackageCard = ({ plan, classNames }: PackageCardProps) => {
         </p>
       </div>
       <div className={"w-full px-2 py-3"}>
-        <Link
-          href={`${MainUrls.getContacts()}?plan=${plan?.plan}`}
-          className={"block"}
-        >
-          <Button fullWidth className={{ button: classNames?.button }}>
-            Book
-          </Button>
-        </Link>
+        {plan.plan === "free" || plan.plan === "full-lesson" ? (
+          <Link
+            href={"https://calendly.com/ostap-konashuk/accordion-lesson"}
+            target={"_blank"}
+            className={"block"}
+          >
+            <Button fullWidth className={{ button: classNames?.button }}>
+              Book
+            </Button>
+          </Link>
+        ) : (
+          <Link
+            href={`${MainUrls.getContacts()}?plan=${plan?.plan}`}
+            className={"block"}
+          >
+            <Button fullWidth className={{ button: classNames?.button }}>
+              Book
+            </Button>
+          </Link>
+        )}
       </div>
     </div>
   );

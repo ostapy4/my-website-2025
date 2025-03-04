@@ -1,6 +1,9 @@
 import { Container, MotionDiv, Title } from "common";
 import Image from "next/image";
 import Link from "next/link";
+import { FaPhone } from "react-icons/fa6";
+import { IoLogoWhatsapp } from "react-icons/io";
+import { SiGmail } from "react-icons/si";
 import OstapIMG from "resources/ostap.png";
 
 export default function Contacts() {
@@ -46,9 +49,9 @@ export default function Contacts() {
                 Ostap Konashuk
               </Title>
               <div>
-                <ul>
-                  <li>
-                    <span>Email: </span>
+                <ul className={"flex flex-col gap-y-2"}>
+                  <li className={"flex items-center gap-x-4"}>
+                    <SiGmail className={"size-5 text-red-500"} />
                     <Link
                       className={
                         "font-semibold text-ok_main-700 transition-colors hover:text-ok_orange-500 hover:underline"
@@ -59,8 +62,8 @@ export default function Contacts() {
                       ostap.konashuk@gmail.com
                     </Link>
                   </li>
-                  <li>
-                    <span>Tel: </span>
+                  <li className={"flex items-center gap-x-4"}>
+                    <FaPhone className={"size-5 text-ok_main-700"} />
                     <Link
                       className={
                         "font-semibold text-ok_main-700 transition-colors hover:text-ok_orange-500 hover:underline"
@@ -69,6 +72,21 @@ export default function Contacts() {
                       target={"_blank"}
                     >
                       +49 171 549 19 48
+                    </Link>
+                  </li>
+                  <li className={"flex items-center gap-x-4"}>
+                    <IoLogoWhatsapp
+                      className={"size-5 scale-110 text-green-500"}
+                    />
+
+                    <Link
+                      className={
+                        "font-semibold text-ok_main-700 transition-colors hover:text-ok_orange-500 hover:underline"
+                      }
+                      href={"https://wa.me/380635309443"}
+                      target={"_blank"}
+                    >
+                      +380 63 530 94 43
                     </Link>
                   </li>
                 </ul>

@@ -1,43 +1,69 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { SheetMusic } from "@prisma/client";
+import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { FormTextInput } from "common/FormInputs";
+import { FormNumberInput, FormTextInput } from "common/FormInputs";
 import { Button } from "common/UI";
 
-import { upload_sheets } from "actions/sheet-music";
+import { update_sheet, upload_sheets } from "actions/sheet-music";
 import { UploadButton } from "utils/uploadthing";
 import { getDefaults } from "utils/zod";
+import { sheetsSchema } from "utils/zod-schemas";
 
-const formSchema = z.object({
-  title: z.string().nonempty("Title is required"),
-  description: z.string().nonempty("Description is required"),
-  pdfUrl: z.string().nonempty("File is required"),
-});
+type Form = z.infer<typeof sheetsSchema>;
 
-type Form = z.infer<typeof formSchema>;
+type UploadSheetFormProps = {
+  data?: SheetMusic | null;
+  resetSheetState: () => void;
+};
 
-export function UploadSheetForm() {
+export function UploadSheetForm({
+  data,
+  resetSheetState,
+}: UploadSheetFormProps) {
   const form = useForm({
-    resolver: zodResolver(formSchema),
-    defaultValues: getDefaults(formSchema),
+    resolver: zodResolver(sheetsSchema),
+    defaultValues: getDefaults(sheetsSchema),
   });
+
+  useEffect(() => {
+    if (data) {
+      form.reset({
+        id: data.id,
+        title: data.title,
+        description: data.description,
+        pdfUrl: data.pdfUrl,
+        price: data.price,
+      });
+    }
+  }, [data, form]);
 
   async function onSubmit(data: Form) {
     try {
-      const res = await upload_sheets(data);
-      if (res) {
-        toast.success("Sheet music uploaded successfully");
-        form.reset();
+      if (data.id) {
+        const res = await update_sheet(data);
+        console.log("submitRes: ", res);
+
+        if (res) {
+          toast.success("Sheet was updated successfully");
+          form.reset(getDefaults(sheetsSchema));
+          resetSheetState();
+        }
+      } else {
+        const res = await upload_sheets(data);
+        if (res) {
+          toast.success("Sheet music uploaded successfully");
+          form.reset(getDefaults(sheetsSchema));
+        }
       }
     } catch (err) {
       console.error("Error during submission:", err);
-      if (err instanceof Error) {
-        toast.error(err.message);
-      }
+      toast.error(err instanceof Error ? err.message : "An error occurred");
     }
   }
 
@@ -53,6 +79,12 @@ export function UploadSheetForm() {
               fieldName={"title"}
               label={"Title"}
               placeholder={"Sheet title"}
+              variants={"cms"}
+            />
+            <FormNumberInput
+              fieldName={"price"}
+              label={"Price"}
+              placeholder={"Price"}
               variants={"cms"}
             />
             <FormTextInput
@@ -78,6 +110,15 @@ export function UploadSheetForm() {
               </p>
             )}
           </div>
+          <Button
+            colorVariant={"danger"}
+            onClick={() => {
+              resetSheetState();
+              form.reset(getDefaults(sheetsSchema));
+            }}
+          >
+            Reset Form
+          </Button>
           <Button
             type={"submit"}
             loading={form.formState.isSubmitting || form.formState.isLoading}

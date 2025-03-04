@@ -58,59 +58,36 @@ export function Packages() {
               "grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 md:gap-x-0 lg:grid-cols-4 lg:gap-x-4"
             }
           >
-            {plans.map((p, Idx) => {
-              if (Idx === 0)
-                return (
-                  <MotionDiv
-                    variants={{
-                      hidden: {
-                        opacity: 0,
-                        y: 20,
-                      },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                      },
-                    }}
-                    transition={{
-                      duration: 0.8,
-                      ease: "easeInOut",
-                    }}
-                    key={p.title + Idx}
-                    className={"flex flex-col items-center"}
-                  >
-                    <PackageCard
-                      plan={p}
-                      classNames={{
-                        titleWrapper: "from-lime-600 to-lime-800",
-                        button: "from-lime-600 to-lime-800",
-                      }}
-                    />
-                  </MotionDiv>
-                );
-              return (
-                <MotionDiv
-                  variants={{
-                    hidden: {
-                      opacity: 0,
-                      y: 20,
-                    },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                    },
+            {plans.map((p, Idx) => (
+              <MotionDiv
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: 20,
+                  },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                  },
+                }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeInOut",
+                }}
+                key={p.title + Idx}
+                className={"flex flex-col items-center"}
+              >
+                <PackageCard
+                  plan={p}
+                  classNames={{
+                    titleWrapper:
+                      p.plan === "free" ? "from-lime-600 to-lime-800" : "",
+                    button:
+                      p.plan === "free" ? "from-lime-600 to-lime-800" : "",
                   }}
-                  transition={{
-                    duration: 0.8,
-                    ease: "easeInOut",
-                  }}
-                  key={p.title + Idx}
-                  className={"flex flex-col items-center"}
-                >
-                  <PackageCard plan={p} key={p.title + Idx} />
-                </MotionDiv>
-              );
-            })}
+                />
+              </MotionDiv>
+            ))}
           </MotionDiv>
         </div>
       </Container>

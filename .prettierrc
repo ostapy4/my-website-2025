@@ -4,6 +4,7 @@
     "prettier-plugin-tailwindcss"
   ],
   "importOrder": [
+    "^src/actions/(.*)$",
     "^app/(.*)$",
     "^(common|components)/(.*)$",
     "^(actions|lib|utils)/(.*)$",

@@ -11,3 +11,11 @@ export const contactsSchema = z.object({
   plan: z.string().default(""),
   message: z.string().default(""),
 });
+
+export const sheetsSchema = z.object({
+  id: z.string().optional(),
+  title: z.string().nonempty("Title is required"),
+  description: z.string().nonempty("Description is required"),
+  pdfUrl: z.string().nonempty("File is required"),
+  price: z.number().int().default(0),
+});

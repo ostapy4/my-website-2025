@@ -47,12 +47,17 @@ export default async function AdminRootLayout({
         suppressHydrationWarning
       >
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-        <Navbar />
-        <main>{children}</main>
+        {!isAdmin ? (
+          <Dialog isOpen={!isAdmin}>
+            <AuthForm />
+          </Dialog>
+        ) : (
+          <>
+            <Navbar />
+            <main>{children}</main>
+          </>
+        )}
         <Toaster position={"top-right"} richColors />
-        <Dialog isOpen={!isAdmin}>
-          <AuthForm />
-        </Dialog>
       </body>
     </html>
   );
