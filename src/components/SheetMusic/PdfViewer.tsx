@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 
 import { Loader } from "common/Loader";
@@ -28,31 +28,41 @@ interface PdfViewerProps {
 export function PdfViewer({ url, classNames }: PdfViewerProps) {
   const [numPages, setNumPages] = useState<number>();
 
+  const [mount, setMount] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMount(true);
+  }, []);
+
+  if (!mount) return;
+
   return (
     <div className={cn(classNames?.wrapper)}>
-      <Document
-        file={url}
-        onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-        className={cn("!w-full", classNames?.document)}
-        // imageResourcesPath={Logo}
-        loading={
-          <Loader
-            className={{
-              wrapper: cn(classNames?.loader),
-            }}
-          />
-        }
-      >
-        {numPages &&
-          Array.from({ length: numPages }).map((_, index) => (
-            <Page
-              className={cn(classNames?.page)}
-              key={index}
-              pageNumber={index + 1}
-              loading={""}
+      {mount && (
+        <Document
+          file={url}
+          onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+          className={cn("!w-full", classNames?.document)}
+          // imageResourcesPath={Logo}
+          loading={
+            <Loader
+              className={{
+                wrapper: cn(classNames?.loader),
+              }}
             />
-          ))}
-      </Document>
+          }
+        >
+          {numPages &&
+            Array.from({ length: numPages }).map((_, index) => (
+              <Page
+                className={cn(classNames?.page)}
+                key={index}
+                pageNumber={index + 1}
+                loading={""}
+              />
+            ))}
+        </Document>
+      )}
     </div>
   );
 }
