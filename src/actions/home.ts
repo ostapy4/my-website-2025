@@ -28,7 +28,6 @@ export const update_gallery = async (data: GalleryInput) => {
         include: { images: true },
       });
 
-      console.log("Gallery successfully created:", newGallery);
       return newGallery;
     }
 
@@ -51,7 +50,6 @@ export const update_gallery = async (data: GalleryInput) => {
       include: { images: true },
     });
 
-    console.log("Gallery successfully updated:", updatedGallery);
     return updatedGallery;
   } catch (error) {
     console.error("Error while updating the gallery:", error);
@@ -72,7 +70,6 @@ export const upload_main_image = async (image: string) => {
         data: { image },
       });
 
-      console.log("New main image created:", newMainImage);
       return newMainImage;
     }
 
@@ -81,7 +78,6 @@ export const upload_main_image = async (image: string) => {
       data: { image },
     });
 
-    console.log("Main image successfully updated:", updatedMainImage);
     return updatedMainImage;
   } catch (error) {
     console.error("Error updating main image:", error);

@@ -27,7 +27,6 @@ export const upload_sheets = async (formData: SheetsInput) => {
         pdfUrl: data.pdfUrl,
       },
     });
-    console.log("Sheet music successfully uploaded:", sheet);
     revalidatePath(AdminUrls.getSheetMusic());
     return sheet;
   } catch (error) {
@@ -53,8 +52,6 @@ export async function update_sheet(formData: SheetsInput) {
       },
       data,
     });
-    console.log({sheet});
-    
     revalidatePath(AdminUrls.getSheetMusic());
     return sheet;
   } catch (error) {

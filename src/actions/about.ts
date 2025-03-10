@@ -6,6 +6,7 @@ import { z } from "zod";
 import { sectionSchema } from "app/(admin)/_components/About/SectionForm";
 
 import { prismaDB } from "lib/db";
+import { AdminUrls } from "route-urls";
 
 type AboutInfo = z.infer<typeof sectionSchema>;
 
@@ -30,8 +31,7 @@ export const create_info_section = async (data: AboutInfo) => {
       },
     });
 
-    console.log("New section successfully created:", newSection);
-    revalidatePath("/cms/admin/about-me");
+    revalidatePath(AdminUrls.getAboutMe());
     return newSection;
   } catch (error) {
     console.error("Error while creating the section:", error);
@@ -63,8 +63,7 @@ export const update_info_section = async (data: AboutInfo) => {
       },
     });
 
-    console.log("Section successfully updated:", updatedSection);
-    revalidatePath("/cms/admin/about-me");
+    revalidatePath(AdminUrls.getAboutMe());
     return updatedSection;
   } catch (error) {
     console.error("Error while updating the section:", error);
@@ -85,9 +84,7 @@ export const delete_info_section = async (sectionId: string) => {
       },
     });
 
-    console.log("Section successfully deleted:", deletedSection);
-
-    revalidatePath("/cms/admin/about-me");
+    revalidatePath(AdminUrls.getAboutMe());
 
     return deletedSection;
   } catch (error) {

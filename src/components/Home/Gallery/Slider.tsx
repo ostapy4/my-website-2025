@@ -21,11 +21,11 @@ export const Slider = ({ data }: SliderProps) => {
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     loop: true,
     defaultAnimation: { duration: 1500 },
-    dragSpeed: 0.1,
+    dragSpeed: 0.3,
     // detailsChanged(s) {
     //   setDetails(s.track.details);
     // },
-    initial: 2,
+    // initial: 2,
   });
 
   // function scaleStyle(idx: number) {
@@ -66,7 +66,7 @@ export const Slider = ({ data }: SliderProps) => {
               alt={"Photo"}
               fill
               className={
-                "rounded-3xl object-cover saturate-[.9] sm:object-contain"
+                "block rounded-3xl object-cover saturate-[.9] sm:object-contain"
               }
             />
           </div>

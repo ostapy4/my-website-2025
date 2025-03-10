@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'zi7nqxyoik.ufs.sh',
       },
+      {
+        protocol: 'https',
+        hostname: '949fy6lzr9.ufs.sh',
+      },
     ],
   },
   experimental: {

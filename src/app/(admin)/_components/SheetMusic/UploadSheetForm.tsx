@@ -47,8 +47,6 @@ export function UploadSheetForm({
     try {
       if (data.id) {
         const res = await update_sheet(data);
-        console.log("submitRes: ", res);
-
         if (res) {
           toast.success("Sheet was updated successfully");
           form.reset(getDefaults(sheetsSchema));
@@ -110,22 +108,24 @@ export function UploadSheetForm({
               </p>
             )}
           </div>
-          <Button
-            colorVariant={"danger"}
-            onClick={() => {
-              resetSheetState();
-              form.reset(getDefaults(sheetsSchema));
-            }}
-          >
-            Reset Form
-          </Button>
+          {form.watch("id") && (
+            <Button
+              colorVariant={"danger"}
+              onClick={() => {
+                resetSheetState();
+                form.reset(getDefaults(sheetsSchema));
+              }}
+            >
+              Reset Form
+            </Button>
+          )}
           <Button
             type={"submit"}
             loading={form.formState.isSubmitting || form.formState.isLoading}
             colorVariant={"cms"}
             className={{ loadingIcon: "text-lime-300" }}
           >
-            Save
+            {form.watch("id") ? "Update" : "Save"}
           </Button>
         </div>
       </form>

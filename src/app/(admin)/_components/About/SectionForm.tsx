@@ -64,8 +64,6 @@ export function SectionForm({ data }: SectionFormProps) {
   });
 
   async function onSubmit(data: Form) {
-    console.log({ data });
-
     try {
       if (data.id) {
         await update_info_section(data);

@@ -5,7 +5,7 @@ import { IconButton } from "common/UI";
 
 type ImageCardProps = {
   url: string;
-  onDelete: (url: string) => void;
+  onDelete: () => void;
 };
 
 export function ImageCard({ url, onDelete }: ImageCardProps) {
@@ -23,7 +23,7 @@ export function ImageCard({ url, onDelete }: ImageCardProps) {
         loading={"lazy"}
       />
       <IconButton
-        onClick={() => onDelete(url)}
+        onClick={onDelete}
         startIcon={
           <FaTrash
             className={

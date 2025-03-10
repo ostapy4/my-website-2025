@@ -1,19 +1,21 @@
 "use client";
 
-import { ImageCard } from "./ImageCard";
+import { DndContext, DragEndEvent, closestCenter } from "@dnd-kit/core";
+import { SortableContext, arrayMove, useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UploadDropzone } from "@uploadthing/react";
-import { useState } from "react";
+import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { FaTrash } from "react-icons/fa6";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { OurFileRouter } from "app/(admin)/api/uploadthing/core";
-
 import { FormTextInput } from "common/FormInputs";
-import { Button } from "common/UI";
+import { Button, IconButton } from "common/UI";
 
 import { update_gallery } from "actions/home";
+import { UploadDropzone } from "utils/uploadthing";
 
 type ImageItem = { image: string; id?: string; galleryId?: string };
 
@@ -33,6 +35,14 @@ type Form = z.infer<typeof formSchema>;
 
 export function GalleryForm({ data }: GalleryProps) {
   const [images, setImages] = useState<ImageItem[]>(data?.images ?? []);
+  const [mount, setMount] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMount(true);
+  }, []);
+
+  const stableIds = useMemo(() => images.map((i) => i.image), [images]);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: formSchema.parse({ title: data?.title ?? "Gallery" }),
@@ -55,9 +65,22 @@ export function GalleryForm({ data }: GalleryProps) {
       }
     }
   }
+
   function deleteImage(url: string) {
     setImages((prev) => prev.filter((i) => i.image !== url));
   }
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    setImages((prev) => {
+      const oldIndex = prev.findIndex((img) => img.image === active.id);
+      const newIndex = prev.findIndex((img) => img.image === over.id);
+      return arrayMove(prev, oldIndex, newIndex);
+    });
+  }
+
   return (
     <FormProvider {...form}>
       <form
@@ -72,17 +95,34 @@ export function GalleryForm({ data }: GalleryProps) {
               placeholder={"Gallery title"}
               variants={"cms"}
             />
-            <div className={"grid grid-cols-4 gap-2"}>
-              {images.length > 0 &&
-                images.map((i) => (
-                  <ImageCard
-                    key={i.id || i.image}
-                    url={i.image}
-                    onDelete={deleteImage}
-                  />
-                ))}
-            </div>
-            <UploadDropzone<OurFileRouter, "galleryUploader">
+            {mount && (
+              <DndContext
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <SortableContext items={stableIds}>
+                  <div className={"grid grid-cols-4 gap-2"}>
+                    {images.map((i) => (
+                      <div key={i.image} className={"relative"}>
+                        <SortableImageCard key={i.image} url={i.image} />
+                        <IconButton
+                          onClick={() => deleteImage(i.image)}
+                          startIcon={
+                            <FaTrash
+                              className={
+                                "size-4 text-red-500 transition-all group-hover:scale-105 group-hover:text-red-400"
+                              }
+                            />
+                          }
+                          className={{ button: "absolute right-1 top-1" }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </SortableContext>
+              </DndContext>
+            )}
+            <UploadDropzone
               endpoint={"galleryUploader"}
               onClientUploadComplete={(res) => {
                 const files =
@@ -107,5 +147,33 @@ export function GalleryForm({ data }: GalleryProps) {
         </div>
       </form>
     </FormProvider>
+  );
+}
+
+function SortableImageCard({ url }: { url: string }) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: url });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  return (
+    <div ref={setNodeRef} {...attributes} {...listeners} style={style}>
+      <div
+        className={
+          "relative aspect-square overflow-hidden rounded-xl bg-ok_main-50"
+        }
+      >
+        <Image
+          src={url}
+          alt={"Image"}
+          fill
+          className={"object-contain"}
+          loading={"lazy"}
+        />
+      </div>
+    </div>
   );
 }

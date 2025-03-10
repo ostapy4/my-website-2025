@@ -13,16 +13,10 @@ export type LoaderProps = {
 
 export function Loader(props: LoaderProps) {
   const { variants = "default", className = {} } = props;
-  const { wrapper: wrapperClassName = "", icon: iconClassName = "" } =
-    className;
+  const { wrapper = "", icon: iconClassName = "" } = className;
 
   return (
-    <div
-      className={twMerge(
-        "flex items-center justify-center py-16",
-        wrapperClassName,
-      )}
-    >
+    <div className={twMerge("flex items-center justify-center", wrapper)}>
       <CgSpinnerTwo
         className={cn(
           "size-12 animate-spin text-ok_main-300",

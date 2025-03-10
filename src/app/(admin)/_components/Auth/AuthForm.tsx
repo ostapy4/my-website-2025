@@ -24,7 +24,6 @@ export function AuthForm() {
   const router = useRouter();
 
   async function onSubmit(data: Form) {
-    console.log({ data });
     try {
       const res = await check_credentials(data);
       if (!res.success) {

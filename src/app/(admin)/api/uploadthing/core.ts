@@ -5,19 +5,18 @@ const f = createUploadthing();
 export const ourFileRouter = {
   mainImage: f({
     image: {
-      maxFileSize: "8MB",
+      maxFileSize: "16MB",
       maxFileCount: 1,
     },
   }).onUploadComplete(async () => {}),
   galleryUploader: f({
     image: {
-      maxFileSize: "4MB",
-      maxFileCount: 5,
+      maxFileSize: "16MB",
+      maxFileCount: 10,
     },
   }).onUploadComplete(async () => {}),
   pdfUploader: f({ pdf: { maxFileSize: "32MB" } }) 
     .onUploadComplete(async ({ file }) => {
-      console.log("Uploaded file URL:", file);
       return { fileUrl: file.ufsUrl };
     }),
 } satisfies FileRouter;
