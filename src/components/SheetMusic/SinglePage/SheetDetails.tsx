@@ -28,8 +28,7 @@ export function SheetDetails({ data }: SheetDetailsProps) {
               wrapper:
                 "flex-1 overflow-hidden rounded-lg lg:rounded-xl bg-white",
               loader: "py-24 md:py-40",
-              document:
-                "max-h-[86vh] overflow-y-auto overflow-x-hidden max-w-full",
+              doc: "max-h-[86vh] overflow-y-auto overflow-x-hidden max-w-full",
               page: "customPage !w-full !max-w-full",
             }}
           />
