@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 
 import { Loader } from "common/Loader";
@@ -19,7 +19,7 @@ interface PdfViewerProps {
   url: string;
   classNames?: {
     wrapper?: string;
-    doc?: string;
+    document?: string;
     loader?: string;
     page?: string;
   };
@@ -28,21 +28,12 @@ interface PdfViewerProps {
 export function PdfViewer({ url, classNames }: PdfViewerProps) {
   const [numPages, setNumPages] = useState<number>();
 
-  const [mount, setMount] = useState<boolean>(false);
-
-  useEffect(() => {
-    setMount(true);
-  }, []);
-
-  if (!mount) return;
-
   return (
     <div className={cn(classNames?.wrapper)}>
       <Document
         file={url}
         onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-        className={cn("!w-full", classNames?.doc)}
-        // imageResourcesPath={Logo}
+        className={cn("!w-full", classNames?.document)}
         loading={
           <Loader
             className={{

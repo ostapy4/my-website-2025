@@ -21,10 +21,14 @@ export const upload_sheets = async (formData: SheetsInput) => {
   try {
     const sheet = await prismaDB.sheetMusic.create({
       data: {
+        author: data.author,
         title: data.title,
         description: data.description,
+        category: data.category,
         price: data.price,
         pdfUrl: data.pdfUrl,
+        preview: data.preview,
+        griffType: data?.griffType
       },
     });
     revalidatePath(AdminUrls.getSheetMusic());
@@ -37,6 +41,7 @@ export const upload_sheets = async (formData: SheetsInput) => {
 
 export async function update_sheet(formData: SheetsInput) {
   const { success, data } = sheetsSchema.safeParse(formData);
+
   if (!success) {
     throw new Error(
       "You must provide a title, description, price and sheet music URL.",
@@ -50,7 +55,16 @@ export async function update_sheet(formData: SheetsInput) {
       where: {
         id: data.id,
       },
-      data,
+      data: {
+        author: data.author,
+        category: data.category,
+        description: data.description,
+        pdfUrl: data.pdfUrl,
+        preview: data.preview,
+        price: data.price,
+        title:data.title,
+        griffType: data?.griffType
+      },
     });
     revalidatePath(AdminUrls.getSheetMusic());
     return sheet;

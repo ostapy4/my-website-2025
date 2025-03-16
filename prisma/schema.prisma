@@ -53,8 +53,20 @@ model Detail {
 model SheetMusic {
   id          String   @id @default(cuid())
   title       String
+  author      String   @default("")
+  category    String   @default("")
   description String
   pdfUrl      String
+  preview     String   @default("")
   price       Int      @default(0)
+  griffType   String?
   createdAt   DateTime @default(now())
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  name      String
+  text      String
+  avatar    String
+  createdAt DateTime @default(now())
 }

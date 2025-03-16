@@ -1,8 +1,8 @@
 "use server";
 
-import { authSchema } from "./schemas";
 import crypto from "crypto";
 import { cookies } from "next/headers";
+import { authSchema } from "utils/zod-schemas";
 import { z } from "zod";
 
 type Credentials = z.infer<typeof authSchema>;

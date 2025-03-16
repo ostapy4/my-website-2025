@@ -1,45 +1,11 @@
+import { Review } from "@prisma/client";
 import { Container, MotionDiv, Title } from "common";
 import Image from "next/image";
 
-type Review = {
-  id: string;
-  username: string;
-  message: string;
-  avatar: string;
-};
+import { prismaDB } from "lib/db";
 
-const data: Review[] = [
-  {
-    id: "ddavcxzasd",
-    username: "Mark",
-    message:
-      "Ive had 2 lessons with Ostap so far and my experience has been phenomenal, Ostap is very patient, friendly and competent. Highly recommend him to anyone searching for a chromatic button accordion teacher.",
-    avatar: "",
-  },
-  {
-    id: "hjkbvftyfghjvb",
-    username: "Kendall",
-    message:
-      "Ostap is a very friendly and knowledgeable instructor. He's patient and good at adjusting the lessons to the individual student. I'm looking forward to taking more lessons from him.",
-    avatar: "",
-  },
-  {
-    id: "ghjhftyufgjhkvbn",
-    username: "Olivia",
-    message:
-      "In this lesson, Ostap went through the details of liber tango with me and taught me chords in F major. He is very professional, patient and good humored. He incorporates accordion learning and music theory in a way that one builds a solid musical mind for future self learning. I strongly recommend his music lessons!",
-    avatar: "",
-  },
-  {
-    id: "jkiv78tiygubhjgv",
-    username: "Pam",
-    message:
-      "Ostap is a wonderful teacher! My son really feels lucky that he found an accordion teacher who not only is incredibly knowledgeable about music and the accordion, but is also able to communicate and accommodate him easily with virtual lessons. Ostap is the perfect blend of patient and encouraging during my son’s lessons. Highly recommend!",
-    avatar: "",
-  },
-];
-
-export function Reviews() {
+export async function Reviews() {
+  const reviews = await prismaDB.review.findMany();
   return (
     <section>
       <Container>
@@ -65,7 +31,7 @@ export function Reviews() {
               "grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
             }
           >
-            {data.map((review) => (
+            {reviews?.map((r) => (
               <MotionDiv
                 variants={{
                   hidden: {
@@ -81,9 +47,9 @@ export function Reviews() {
                   duration: 0.8,
                   ease: "easeInOut",
                 }}
-                key={review.id}
+                key={r.id}
               >
-                <ReviewItem data={review} />
+                <ReviewItem data={r} />
               </MotionDiv>
             ))}
           </MotionDiv>
@@ -111,15 +77,22 @@ const ReviewItem = ({ data }: { data: Review }) => {
             />
           ) : (
             <span className={"text-lg font-bold text-ok_main-300"}>
-              {data.username.slice(0, 1).toUpperCase() || "N"}
+              {data.name[0].toUpperCase() || "N"}
             </span>
           )}
         </div>
-        <Title className={"text-ok_main-700"} size={"2xl"} component={"h4"}>
-          {data.username}
+        <Title
+          className={"flex-1 text-ok_main-700"}
+          size={"2xl"}
+          component={"h4"}
+        >
+          {data.name}
         </Title>
+        <span className={"self-start text-sm"}>
+          {new Date(data.createdAt).toLocaleDateString()}
+        </span>
       </div>
-      <p className={"text-sm italic"}>{data.message}</p>
+      <p className={"text-sm italic"}>{data.text}</p>
     </div>
   );
 };

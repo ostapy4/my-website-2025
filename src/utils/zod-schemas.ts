@@ -4,6 +4,11 @@ export const emailSchema = z.object({
   email: z.string().email().default(""),
 });
 
+export const authSchema = z.object({
+  email: z.string().email().default(""),
+  password: z.string().nonempty().default(""),
+});
+
 export const contactsSchema = z.object({
   firstname: z.string().nonempty("Please write your name").default(""),
   email: z.string().email().default(""),
@@ -14,8 +19,18 @@ export const contactsSchema = z.object({
 
 export const sheetsSchema = z.object({
   id: z.string().optional(),
+  author: z.string().default(""),
   title: z.string().nonempty("Title is required"),
-  description: z.string().nonempty("Description is required"),
+  category: z.string().nonempty("Category is required"),
+  description: z.string().default(""),
   pdfUrl: z.string().nonempty("File is required"),
+  preview: z.string().default(""),
   price: z.number().int().default(0),
+  griffType: z.string().optional()
+});
+
+export const reviewSchema = z.object({
+  name: z.string().default(""),
+  text: z.string().default(""),
+  avatar: z.string().default(""),
 });

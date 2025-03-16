@@ -31,7 +31,7 @@ export const PackageCard = ({ plan, classNames }: PackageCardProps) => {
   return (
     <div
       className={
-        "flex h-full min-h-96 w-full max-w-80 flex-col items-center overflow-hidden rounded-2xl bg-ok_main-50"
+        "flex h-full w-full max-w-80 flex-col items-center overflow-hidden rounded-2xl bg-ok_main-50 sm:min-h-96"
       }
     >
       <div
@@ -64,7 +64,7 @@ export const PackageCard = ({ plan, classNames }: PackageCardProps) => {
           >
             {fullPrice}
           </span>
-        )}{" "}
+        )}
         <span
           className={"text-4xl font-bold uppercase italic text-ok_main-700"}
         >

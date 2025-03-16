@@ -68,10 +68,10 @@ export default function Contacts() {
                       className={
                         "font-semibold text-ok_main-700 transition-colors hover:text-ok_orange-500 hover:underline"
                       }
-                      href={"tel:+491715491948"}
+                      href={"tel:+491605705055"}
                       target={"_blank"}
                     >
-                      +49 171 549 19 48
+                      +49 160 570 50 55
                     </Link>
                   </li>
                   <li className={"flex items-center gap-x-4"}>

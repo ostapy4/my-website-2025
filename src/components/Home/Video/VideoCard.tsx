@@ -24,6 +24,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({ url }) => {
           url={url}
           width={"auto"}
           height={"100%"}
+          className={"overflow-hidden rounded-2xl"}
         />
       )}
     </>

@@ -10,8 +10,8 @@ import { FormTextInput } from "common/FormInputs";
 import { Button } from "common/UI";
 
 import { check_credentials } from "actions/auth";
-import { authSchema } from "actions/schemas";
 import { getDefaults } from "utils/zod";
+import { authSchema } from "utils/zod-schemas";
 
 type Form = z.infer<typeof authSchema>;
 

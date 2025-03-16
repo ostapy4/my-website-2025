@@ -25,6 +25,16 @@ export const metadata: Metadata = {
     template: "%s | O.Konashuk",
   },
   description: "Welcome to Ostap Konashuk website",
+  keywords: [
+    "accordion",
+    "sheet music",
+    "lessons",
+    "accordion lessons",
+    "audio",
+    "audio transcription",
+    "accordion teacher",
+    "arranger",
+  ],
 };
 
 export default function RootLayout({

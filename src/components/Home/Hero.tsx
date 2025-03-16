@@ -127,7 +127,11 @@ export async function Hero() {
                     priority
                     aria-hidden
                   />
-                  <div className={"z-10 bg-white/60 p-4 backdrop-blur-sm"}>
+                  <div
+                    className={
+                      "z-10 overflow-hidden rounded-xl bg-white/60 p-4 backdrop-blur-sm"
+                    }
+                  >
                     <p className={"mb-4 text-center text-xl text-ok_main-600"}>
                       Book a{" "}
                       <span

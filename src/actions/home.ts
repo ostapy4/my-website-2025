@@ -1,6 +1,10 @@
 "use server";
 
+import { Review } from "@prisma/client";
 import { prismaDB } from "lib/db";
+import { revalidatePath } from "next/cache";
+import { AdminUrls } from "route-urls";
+import { reviewSchema } from "utils/zod-schemas";
 
 type GalleryInput = {
   title: string;
@@ -89,5 +93,27 @@ export const upload_main_image = async (image: string) => {
         "An unknown error occurred while updating the main image",
       );
     }
+  }
+};
+
+export const create_review = async (review: Omit<Review, "id" | "createdAt">) => {
+  const { success, data } = reviewSchema.safeParse(review);
+
+  if (!success) {
+    throw new Error(
+      "You must provide a name and text.",
+    );
+  }
+
+  try {
+    const newReview = await prismaDB.review.create({
+      data,
+    });
+    revalidatePath(AdminUrls._getRoot())
+    return newReview;
+  } catch (error) {
+    console.error("Error updating main image:", error);
+
+    throw new Error(error instanceof Error ? error.message : "An unknown error occurred while creating a new review")
   }
 };

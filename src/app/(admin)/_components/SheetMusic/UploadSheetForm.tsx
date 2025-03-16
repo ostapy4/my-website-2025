@@ -7,7 +7,11 @@ import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { FormNumberInput, FormTextInput } from "common/FormInputs";
+import {
+  FormNumberInput,
+  FormSelectInput,
+  FormTextInput,
+} from "common/FormInputs";
 import { Button } from "common/UI";
 
 import { update_sheet, upload_sheets } from "actions/sheet-music";
@@ -35,10 +39,14 @@ export function UploadSheetForm({
     if (data) {
       form.reset({
         id: data.id,
+        author: data.author,
         title: data.title,
+        category: data.category,
         description: data.description,
         pdfUrl: data.pdfUrl,
+        preview: data.preview,
         price: data.price,
+        griffType: data?.griffType,
       });
     }
   }, [data, form]);
@@ -69,15 +77,41 @@ export function UploadSheetForm({
     <FormProvider {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={"lg:max-w-screen-sm"}
+        className={"mb-8 lg:max-w-screen-sm"}
       >
         <div className={"flex flex-col gap-y-5"}>
           <div className={"flex flex-col gap-y-3"}>
+            <FormTextInput
+              fieldName={"author"}
+              label={"Author"}
+              placeholder={"Author name"}
+              variants={"cms"}
+            />
             <FormTextInput
               fieldName={"title"}
               label={"Title"}
               placeholder={"Sheet title"}
               variants={"cms"}
+            />
+            <FormSelectInput
+              fieldName={"category"}
+              label={"Category"}
+              display={"Choose a category"}
+              options={[
+                { label: "Exercises", value: "exercises" },
+                { label: "Pieces", value: "pieces" },
+              ]}
+              variant={"cms"}
+            />
+            <FormSelectInput
+              fieldName={"griffType"}
+              label={"Griff Type"}
+              display={" - "}
+              options={[
+                { label: "C-Griff", value: "c-griff" },
+                { label: "B-Griff", value: "b-griff" },
+              ]}
+              variant={"cms"}
             />
             <FormNumberInput
               fieldName={"price"}
@@ -92,21 +126,56 @@ export function UploadSheetForm({
               multiline
               variants={"cms"}
             />
-            <UploadButton
-              endpoint={"pdfUploader"}
-              onClientUploadComplete={(res) => {
-                if (!res) return;
-                form.setValue("pdfUrl", res[0].ufsUrl ?? "");
-              }}
-              onUploadError={(error: Error) => {
-                console.error(`ERROR! ${error.message}`);
-              }}
-            />
-            {form.formState.errors && form.formState.errors.pdfUrl && (
-              <p className={"text-center text-sm text-red-500"}>
-                {form.formState.errors.pdfUrl?.message?.toString()}
-              </p>
-            )}
+            <div className={"flex w-full flex-col gap-3 sm:flex-row"}>
+              <div
+                className={
+                  "flex flex-1 flex-col gap-y-4 rounded-lg border border-lime-700 px-4 py-3"
+                }
+              >
+                <label className={"text-sm font-medium text-lime-900"}>
+                  PDF
+                </label>
+                <UploadButton
+                  endpoint={"pdfUploader"}
+                  onClientUploadComplete={(res) => {
+                    if (!res) return;
+                    form.setValue("pdfUrl", res[0].ufsUrl ?? "");
+                  }}
+                  onUploadError={(error: Error) => {
+                    console.error(`ERROR! ${error.message}`);
+                  }}
+                />
+                {form.formState.errors && form.formState.errors.pdfUrl && (
+                  <p className={"text-center text-sm text-red-500"}>
+                    {form.formState.errors.pdfUrl?.message?.toString()}
+                  </p>
+                )}
+              </div>
+              <div
+                className={
+                  "flex flex-1 flex-col gap-y-4 rounded-lg border border-lime-700 px-4 py-3"
+                }
+              >
+                <label className={"text-sm font-medium text-lime-900"}>
+                  Preview
+                </label>
+                <UploadButton
+                  endpoint={"preview"}
+                  onClientUploadComplete={(res) => {
+                    if (!res) return;
+                    form.setValue("preview", res[0].ufsUrl ?? "");
+                  }}
+                  onUploadError={(error: Error) => {
+                    console.error(`ERROR! ${error.message}`);
+                  }}
+                />
+                {form.formState.errors && form.formState.errors.pdfUrl && (
+                  <p className={"text-center text-sm text-red-500"}>
+                    {form.formState.errors.preview?.message?.toString()}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
           {form.watch("id") && (
             <Button
