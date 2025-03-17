@@ -1,2 +1,2 @@
-export * from "./SheetMusic"
+export * from "./SheetMusicResult"
 export * from "./SinglePage"

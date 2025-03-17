@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Infant, Montserrat } from "next/font/google";
+import { Providers } from "providers";
 import { Toaster } from "sonner";
 
 import { Footer, Header } from "components/Layout";
@@ -49,7 +50,9 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <Header />
-        <main>{children}</main>
+        <Providers>
+          <main>{children}</main>
+        </Providers>
         <Footer />
         <Toaster
           position={"top-right"}

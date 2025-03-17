@@ -132,7 +132,7 @@ export function SelectInput(props: SelectInputProps) {
             anchor={"bottom start"}
             transition
             className={cn(
-              "z-[1000] !max-h-56 w-[var(--button-width)] origin-top divide-y-[1px] rounded-lg border transition duration-300 ease-out [--anchor-gap:4px] focus:outline-none data-[closed]:scale-95 data-[open]:scale-100 data-[closed]:opacity-0",
+              "z-[1000] !max-h-56 w-[var(--button-width)] min-w-fit origin-top divide-y-[1px] rounded-lg border transition duration-300 ease-out [--anchor-gap:4px] focus:outline-none data-[closed]:scale-95 data-[open]:scale-100 data-[closed]:opacity-0",
               {
                 "divide-ok_main-900 border-ok_main-900 bg-ok_main-50 text-ok_main-600":
                   variant === "default",

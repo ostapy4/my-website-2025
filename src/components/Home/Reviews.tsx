@@ -81,16 +81,9 @@ const ReviewItem = ({ data }: { data: Review }) => {
             </span>
           )}
         </div>
-        <Title
-          className={"flex-1 text-ok_main-700"}
-          size={"2xl"}
-          component={"h4"}
-        >
+        <Title className={"text-ok_main-700"} size={"2xl"} component={"h4"}>
           {data.name}
         </Title>
-        <span className={"self-start text-sm"}>
-          {new Date(data.createdAt).toLocaleDateString()}
-        </span>
       </div>
       <p className={"text-sm italic"}>{data.text}</p>
     </div>
