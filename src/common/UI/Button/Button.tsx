@@ -3,7 +3,7 @@ import { ButtonBase, ButtonBaseProps } from "./ButtonBase";
 import { cn } from "utils/cn";
 
 export type ButtonProps<T> = {
-  size?: "small" | "normal" | "large";
+  size?: "small" | "normal" | "large" | "super-large";
   colorVariant?: "primary" | "cms" | "danger" | "cancel";
   fullWidth?: boolean;
 } & ButtonBaseProps<T>;
@@ -63,6 +63,7 @@ export function Button<T>(props: ButtonProps<T>) {
             "px-3 py-1.5 text-sm": size === "small",
             "px-6 py-2": size === "normal",
             "px-8 py-2.5": size === "large",
+            "px-20 py-10": size === "super-large",
           },
           className?.button,
         ),

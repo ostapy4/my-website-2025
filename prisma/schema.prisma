@@ -55,6 +55,8 @@ model SheetMusic {
   title       String
   author      String   @default("")
   category    String   @default("")
+  level       String   @default("")
+  genre       String   @default("")
   description String
   pdfUrl      String
   preview     String   @default("")
