@@ -8,7 +8,7 @@ import { FiCheck, FiChevronUp } from "react-icons/fi";
 
 import { cn } from "utils/cn";
 
-export type Option = {
+type Option = {
   value: string;
   label: string;
 };
@@ -24,12 +24,12 @@ type BaseProps = {
   error?: boolean;
 };
 
-export type SelectInputProps = {
+export type SortSelectInputProps = {
   value: string;
   onChange: (value: string) => void;
 } & BaseProps;
 
-export function SortSelectInput(props: SelectInputProps) {
+export function SortSelectInput(props: SortSelectInputProps) {
   const { value, onChange, options, display = "", className = {} } = props;
 
   const { button } = className;

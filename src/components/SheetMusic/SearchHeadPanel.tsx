@@ -6,8 +6,7 @@ import { FaListUl } from "react-icons/fa6";
 import { FiGrid } from "react-icons/fi";
 import { StringParam, useQueryParams, withDefault } from "use-query-params";
 
-import { IconButton, TextInput } from "common/UI";
-import { SortSelectInput } from "common/UI/Inputs/SortSelectInput";
+import { IconButton, SortSelectInput, TextInput } from "common/UI";
 
 export function SearchHeadPanel() {
   const [queryParams, setQueryParams] = useQueryParams(
@@ -81,7 +80,6 @@ export function SearchHeadPanel() {
             display={"Sort By"}
             value={queryParams.ordering}
             onChange={(v) => setQueryParams((s) => ({ ...s, ordering: v }))}
-            // className={{ wrapper: "min-w-fit" }}
           />
         </div>
       </div>
