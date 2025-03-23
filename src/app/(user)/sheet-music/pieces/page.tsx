@@ -7,15 +7,13 @@ import { Filters } from "components/SheetMusic/Filters";
 import { SearchHeadPanel } from "components/SheetMusic/SearchHeadPanel";
 
 export type SearchParams = Promise<{
-  [key: string]: string | string[] | undefined;
+  [key: string]: string | undefined;
 }>;
 
 export default async function PiecesPage(props: {
   searchParams: SearchParams;
 }) {
   const searchParams = await props.searchParams;
-
-  console.log({ searchParams });
 
   return (
     <section>
@@ -34,10 +32,10 @@ export default async function PiecesPage(props: {
               Pieces
             </Title>
           </MotionDiv>
-          <div className={"flex gap-x-3"}>
-            <Filters />
-            <div className={"flex-1"}>
-              <SearchHeadPanel />
+          <div className={""}>
+            <SearchHeadPanel />
+            <div className={"flex gap-x-3"}>
+              <Filters />
               <Suspense fallback={<Loader />}>
                 <SheetMusicResult searchParams={searchParams} />
               </Suspense>

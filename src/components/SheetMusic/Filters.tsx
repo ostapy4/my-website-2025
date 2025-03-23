@@ -1,22 +1,32 @@
 "use client";
 
 import { Title } from "common";
-import { ArrayParam, useQueryParams, withDefault } from "use-query-params";
+import { useEffect, useState } from "react";
+import {
+  DelimitedArrayParam,
+  useQueryParams,
+  withDefault,
+} from "use-query-params";
 
 import { CheckBoxInput } from "common/UI/Inputs/CheckBox";
 
 export function Filters() {
-  const [filter, setFilter] = useQueryParams(
+  const [queryParams, setQueryParams] = useQueryParams(
     {
-      level: withDefault(ArrayParam, []),
-      genre: withDefault(ArrayParam, []),
-      griff: withDefault(ArrayParam, []),
+      level: withDefault(DelimitedArrayParam, []),
+      genre: withDefault(DelimitedArrayParam, []),
+      griff: withDefault(DelimitedArrayParam, []),
     },
-    {
-      removeDefaultsFromUrl: true,
-    },
+    { removeDefaultsFromUrl: true },
   );
 
+  const [filters, setFilters] = useState({
+    level: queryParams.level,
+    genre: queryParams.genre,
+    griff: queryParams.griff,
+  });
+
+  const griffes = ["c", "b"];
   const levels = ["A1", "A2", "B1", "B2", "C1", "C2"];
   const genres = [
     "classic",
@@ -28,18 +38,22 @@ export function Filters() {
     "tango",
     "other",
   ];
-  const griffes = ["c", "b"];
+
+  useEffect(() => {
+    setQueryParams(filters);
+  }, [filters, setQueryParams]);
 
   const handleFilterChange = (
     key: "level" | "genre" | "griff",
     value: string,
     checked: boolean,
   ) => {
-    setFilter({
+    setFilters((prev) => ({
+      ...prev,
       [key]: checked
-        ? [...filter[key], value]
-        : filter[key].filter((v) => v !== value),
-    });
+        ? [...prev[key], value]
+        : prev[key].filter((v) => v !== value),
+    }));
   };
 
   return (
@@ -48,10 +62,6 @@ export function Filters() {
         "min-w-32 max-w-fit self-start rounded-lg bg-ok_main-50 px-3 py-2"
       }
     >
-      <Title size={"3xl"} className={"mb-3"} component={"h4"}>
-        Filters
-      </Title>
-
       <div>
         <Title size={"xl"} className={"mb-2"} component={"h5"}>
           Level
@@ -61,7 +71,7 @@ export function Filters() {
             <CheckBoxInput
               key={level}
               label={level}
-              value={(filter.level as string[]).includes(level)}
+              value={(filters.level as string[]).includes(level)}
               onChange={(v) => handleFilterChange("level", level, v)}
             />
           ))}
@@ -77,7 +87,7 @@ export function Filters() {
             <CheckBoxInput
               key={genre}
               label={genre}
-              value={(filter.genre as string[]).includes(genre)}
+              value={(filters.genre as string[]).includes(genre)}
               onChange={(v) => handleFilterChange("genre", genre, v)}
             />
           ))}
@@ -93,7 +103,7 @@ export function Filters() {
             <CheckBoxInput
               key={griff}
               label={griff}
-              value={(filter.griff as string[]).includes(griff)}
+              value={(filters.griff as string[]).includes(griff)}
               onChange={(v) => handleFilterChange("griff", griff, v)}
             />
           ))}
@@ -101,23 +111,4 @@ export function Filters() {
       </div>
     </aside>
   );
-}
-
-{
-  /* <Button
-onClick={() => {
-  setFilter({
-    q: "",
-    ordering: "",
-    level: "",
-    genre: "",
-    griff: "",
-    page: "",
-  });
-  setIsFiltersOpen(false);
-}}
-size={"small"}
->
-Reset all filters
-</Button> */
 }

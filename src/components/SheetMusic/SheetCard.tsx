@@ -104,7 +104,7 @@ export function SheetCard({ data }: SheetCardProps) {
             href={`${MainUrls.getSheetMusic()}/checkout?id=${id}`}
             className={"w-full"}
           >
-            <Button fullWidth colorVariant={"danger"}>
+            <Button fullWidth colorVariant={"cms"}>
               Buy
             </Button>
           </Link>

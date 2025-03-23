@@ -6,10 +6,11 @@ import { FaListUl } from "react-icons/fa6";
 import { FiGrid } from "react-icons/fi";
 import { StringParam, useQueryParams, withDefault } from "use-query-params";
 
-import { IconButton, SelectInput, TextInput } from "common/UI";
+import { IconButton, TextInput } from "common/UI";
+import { SortSelectInput } from "common/UI/Inputs/SortSelectInput";
 
 export function SearchHeadPanel() {
-  const [filter, setFilter] = useQueryParams(
+  const [queryParams, setQueryParams] = useQueryParams(
     {
       q: withDefault(StringParam, ""),
       ordering: withDefault(StringParam, ""),
@@ -20,18 +21,26 @@ export function SearchHeadPanel() {
     },
   );
 
-  const [searchQueryValue, setSearchQueryValue] = useState(filter.q);
+  const [searchQueryValue, setSearchQueryValue] = useState(queryParams.q);
+  const [view, setView] = useState(queryParams.view ?? "");
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setFilter((s) => ({
+      setQueryParams((s) => ({
         ...s,
         q: searchQueryValue,
       }));
     }, 500);
 
     return () => clearTimeout(timeout);
-  }, [searchQueryValue, setFilter]);
+  }, [searchQueryValue, setQueryParams]);
+
+  useEffect(() => {
+    setQueryParams((s) => ({
+      ...s,
+      view,
+    }));
+  }, [view, setQueryParams]);
 
   return (
     <div className={"mb-6 flex justify-end gap-x-4"}>
@@ -45,36 +54,34 @@ export function SearchHeadPanel() {
       <div className={"flex items-center gap-x-4 sm:justify-end"}>
         <div className={"flex"}>
           <IconButton
-            onClick={() => setFilter((s) => ({ ...s, view: "" }))}
+            onClick={() => setView("")}
             size={"small"}
             startIcon={
-              <FiGrid
-                className={clsx("size-5", !filter.view && "text-ok_main-600")}
-              />
+              <FiGrid className={clsx("size-5", !view && "text-ok_main-600")} />
             }
           />
           <IconButton
-            onClick={() => setFilter((s) => ({ ...s, view: "list" }))}
+            onClick={() => setView("list")}
             size={"small"}
             startIcon={
               <FaListUl
-                className={clsx("size-5", filter.view && "text-ok_main-600")}
+                className={clsx("size-5", view && "text-ok_main-600")}
               />
             }
           />
         </div>
         <div className={"relative w-full flex-shrink-0 sm:w-fit"}>
-          <SelectInput
+          <SortSelectInput
             options={[
-              { value: "", label: "-" },
               { value: "title", label: "Title (A-Z)" },
               { value: "-title", label: "Title (Z-A)" },
               { value: "author", label: "Composer (A-Z)" },
               { value: "-author", label: "Composer (Z-A)" },
             ]}
-            value={filter.ordering}
-            onChange={(v) => setFilter((s) => ({ ...s, ordering: v }))}
-            className={{ wrapper: "min-w-fit" }}
+            display={"Sort By"}
+            value={queryParams.ordering}
+            onChange={(v) => setQueryParams((s) => ({ ...s, ordering: v }))}
+            // className={{ wrapper: "min-w-fit" }}
           />
         </div>
       </div>

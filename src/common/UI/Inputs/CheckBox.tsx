@@ -23,13 +23,13 @@ export const CheckBoxInput = (props: CheckBoxProps) => {
         checked={value}
         onChange={onChange}
         className={
-          "group flex size-5 items-center justify-center rounded-md bg-ok_main-100 transition-all data-[disabled]:cursor-not-allowed data-[checked]:bg-ok_orange-400 data-[checked]:data-[disabled]:bg-gray-500 data-[disabled]:opacity-50"
+          "group flex size-5 items-center justify-center rounded-md bg-ok_main-100 transition-all duration-75 data-[disabled]:cursor-not-allowed data-[checked]:bg-ok_orange-400 data-[checked]:data-[disabled]:bg-gray-500 data-[disabled]:opacity-50"
         }
       >
         {({ checked }) => (
           <Transition
             show={checked}
-            enter={"transition duration-100 ease-out"}
+            enter={"transition duration-75 ease-out"}
             enterFrom={"transform scale-0 opacity-0"}
             enterTo={"transform scale-100 opacity-100"}
             leave={"transition duration-75 ease-out"}

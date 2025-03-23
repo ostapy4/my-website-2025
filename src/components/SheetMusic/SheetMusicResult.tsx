@@ -4,14 +4,12 @@ import { prismaDB } from "lib/db";
 
 type SheetMusicProps = {
   searchParams: {
-    [key: string]: string | string[] | undefined;
+    [key: string]: string | undefined;
   };
 };
 
 export async function SheetMusicResult({ searchParams }: SheetMusicProps) {
-  const { q, ordering, level, genre, griff, view } = searchParams as {
-    [key: string]: string;
-  };
+  const { q, ordering, level, genre, griff, view } = searchParams;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const where: any = {};
@@ -24,17 +22,17 @@ export async function SheetMusicResult({ searchParams }: SheetMusicProps) {
   }
 
   if (level) {
-    const levelsArray = Array.isArray(level) ? level : [level];
+    const levelsArray = level.split("_");
     where.level = { in: levelsArray };
   }
 
   if (genre) {
-    const genresArray = Array.isArray(genre) ? genre : [genre];
+    const genresArray = genre.split("_");
     where.genre = { in: genresArray };
   }
 
   if (griff) {
-    const griffArray = Array.isArray(griff) ? griff : [griff];
+    const griffArray = griff.split("_");
     where.griffType = { in: griffArray };
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

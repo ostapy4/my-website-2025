@@ -39,7 +39,8 @@ export function SheetRow({ data, Idx }: SheetRowProps) {
         </Link>
         <span className={"line-clamp-1 flex-1"}>{author}</span>
         <span className={"line-clamp-1 max-w-24 flex-1 first-letter:uppercase"}>
-          {griffType}-system
+          {griffType}
+          {griffType && "-system"}
         </span>
         {price ? (
           <div
@@ -83,7 +84,7 @@ export function SheetRow({ data, Idx }: SheetRowProps) {
             href={`${MainUrls.getSheetMusic()}/checkout?id=${id}`}
             className={"w-full"}
           >
-            <Button fullWidth colorVariant={"danger"}>
+            <Button fullWidth colorVariant={"cms"}>
               Buy
             </Button>
           </Link>
