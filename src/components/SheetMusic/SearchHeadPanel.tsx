@@ -9,6 +9,12 @@ import { StringParam, useQueryParams, withDefault } from "use-query-params";
 import { IconButton, SortSelectInput, TextInput } from "common/UI";
 
 export function SearchHeadPanel() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const [queryParams, setQueryParams] = useQueryParams(
     {
       q: withDefault(StringParam, ""),
@@ -21,7 +27,7 @@ export function SearchHeadPanel() {
   );
 
   const [searchQueryValue, setSearchQueryValue] = useState(queryParams.q);
-  const [view, setView] = useState(queryParams.view ?? "");
+  const [view, setView] = useState(queryParams.view);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -35,11 +41,15 @@ export function SearchHeadPanel() {
   }, [searchQueryValue, setQueryParams]);
 
   useEffect(() => {
-    setQueryParams((s) => ({
-      ...s,
-      view,
-    }));
-  }, [view, setQueryParams]);
+    if (isClient) {
+      setQueryParams((s) => ({
+        ...s,
+        view,
+      }));
+    }
+  }, [view, setQueryParams, isClient]);
+
+  if (!isClient) return null;
 
   return (
     <div className={"mb-6 flex justify-end gap-x-4"}>

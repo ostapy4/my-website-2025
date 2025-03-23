@@ -3,8 +3,10 @@ import { Suspense } from "react";
 
 import { Loader } from "common/Loader";
 import { SheetMusicResult } from "components/SheetMusic";
-import { Filters } from "components/SheetMusic/Filters";
-import { SearchHeadPanel } from "components/SheetMusic/SearchHeadPanel";
+
+// import { Filters } from "components/SheetMusic/Filters";
+
+// import { SearchHeadPanel } from "components/SheetMusic/SearchHeadPanel";
 
 export type SearchParams = Promise<{
   [key: string]: string | undefined;
@@ -33,9 +35,9 @@ export default async function PiecesPage(props: {
             </Title>
           </MotionDiv>
           <div className={""}>
-            <SearchHeadPanel />
+            {/* <SearchHeadPanel /> */}
             <div className={"flex gap-x-3"}>
-              <Filters />
+              {/* <Filters /> */}
               <Suspense fallback={<Loader />}>
                 <SheetMusicResult searchParams={searchParams} />
               </Suspense>

@@ -8,7 +8,7 @@ import { FiAlertTriangle, FiCheck, FiChevronUp } from "react-icons/fi";
 
 import { cn } from "utils/cn";
 
-export type Option = {
+type Option = {
   value: string;
   label: string;
 };

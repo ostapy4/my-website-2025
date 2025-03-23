@@ -8,9 +8,15 @@ import {
   withDefault,
 } from "use-query-params";
 
-import { CheckBoxInput } from "common/UI/Inputs/CheckBox";
+import { CheckBoxInput } from "common/UI";
 
 export function Filters() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const [queryParams, setQueryParams] = useQueryParams(
     {
       level: withDefault(DelimitedArrayParam, []),
@@ -40,8 +46,10 @@ export function Filters() {
   ];
 
   useEffect(() => {
-    setQueryParams(filters);
-  }, [filters, setQueryParams]);
+    if (isClient) {
+      setQueryParams(filters);
+    }
+  }, [filters, setQueryParams, isClient]);
 
   const handleFilterChange = (
     key: "level" | "genre" | "griff",
@@ -55,6 +63,8 @@ export function Filters() {
         : prev[key].filter((v) => v !== value),
     }));
   };
+
+  if (!isClient) return null;
 
   return (
     <aside
