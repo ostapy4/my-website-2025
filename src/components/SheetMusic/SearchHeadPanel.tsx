@@ -1,5 +1,6 @@
 "use client";
 
+import { FiltersMobile } from "./FiltersMobile";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { FaListUl } from "react-icons/fa6";
@@ -42,7 +43,7 @@ export function SearchHeadPanel() {
   }, [view, setQueryParams]);
 
   return (
-    <div className={"mb-6 flex justify-end gap-x-4"}>
+    <div className={"mb-6 flex flex-col justify-end gap-x-4 gap-y-2"}>
       <TextInput
         value={searchQueryValue}
         onChange={(e) => setSearchQueryValue(e.target.value)}
@@ -50,8 +51,10 @@ export function SearchHeadPanel() {
         className={{ container: "w-full max-w-[320px]" }}
       />
 
-      <div className={"flex items-center gap-x-4 sm:justify-end"}>
-        <div className={"flex"}>
+      <div
+        className={"flex items-center justify-between gap-x-4 sm:justify-end"}
+      >
+        <div className={"hidden md:flex"}>
           <IconButton
             onClick={() => setView("")}
             size={"small"}
@@ -69,7 +72,9 @@ export function SearchHeadPanel() {
             }
           />
         </div>
-        <div className={"relative w-full flex-shrink-0 sm:w-fit"}>
+
+        <FiltersMobile />
+        <div className={"relative flex-shrink-0 sm:w-fit"}>
           <SortSelectInput
             options={[
               { value: "title", label: "Title (A-Z)" },
@@ -77,7 +82,7 @@ export function SearchHeadPanel() {
               { value: "author", label: "Composer (A-Z)" },
               { value: "-author", label: "Composer (Z-A)" },
             ]}
-            display={"Sort By"}
+            display={"Sort by"}
             value={queryParams.ordering}
             onChange={(v) => setQueryParams((s) => ({ ...s, ordering: v }))}
           />

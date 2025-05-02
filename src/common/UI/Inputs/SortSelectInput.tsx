@@ -41,7 +41,7 @@ export function SortSelectInput(props: SortSelectInputProps) {
           <>
             <div
               className={cn(
-                "flex flex-nowrap items-center gap-x-1 rounded-lg border border-ok_main-500 bg-ok_main-50 px-3 py-2.5 text-ok_main-600 transition-colors",
+                "flex flex-nowrap items-center gap-x-1.5 rounded-lg border border-ok_main-500 bg-ok_main-50 px-3 py-1.5 text-ok_main-600 transition-colors",
                 {
                   "border-ok_main-900": active,
                   "hover:border-ok_main-400": !active,
@@ -50,13 +50,15 @@ export function SortSelectInput(props: SortSelectInputProps) {
               )}
             >
               <span
-                className={"line-clamp-1 flex-1 whitespace-nowrap text-left"}
+                className={
+                  "line-clamp-1 flex-1 whitespace-nowrap text-left text-sm font-medium"
+                }
               >
                 {display}
               </span>
               <FiChevronUp
                 className={cn(
-                  "size-5 transform select-none stroke-ok_main-700 transition duration-300",
+                  "size-4 transform select-none stroke-ok_main-700 transition duration-300",
                   {
                     "rotate-180": open,
                   },
@@ -83,7 +85,7 @@ export function SortSelectInput(props: SortSelectInputProps) {
             {({ focus, selected }) => (
               <div
                 className={cn(
-                  "flex cursor-pointer select-none items-center justify-between gap-x-2 text-nowrap px-3 py-[11px]",
+                  "flex cursor-pointer select-none items-center justify-between gap-x-2 text-nowrap px-3 py-1.5 text-sm",
                   {
                     "bg-ok_orange-300/30": focus,
                     "bg-ok_orange-400 text-white": selected,

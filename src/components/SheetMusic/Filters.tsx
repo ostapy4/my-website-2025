@@ -1,7 +1,9 @@
 "use client";
 
 import { Title } from "common";
+import { genres, griffes, levels } from "consts";
 import { useEffect, useState } from "react";
+// import { FaArrowLeftLong } from "react-icons/fa6";
 import {
   DelimitedArrayParam,
   useQueryParams,
@@ -10,7 +12,10 @@ import {
 
 import { CheckBoxInput } from "common/UI";
 
+// import { cn } from "utils/cn";
+
 export function Filters() {
+  // const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [queryParams, setQueryParams] = useQueryParams(
     {
       level: withDefault(DelimitedArrayParam, []),
@@ -25,19 +30,6 @@ export function Filters() {
     genre: queryParams.genre,
     griff: queryParams.griff,
   });
-
-  const griffes = ["c", "b"];
-  const levels = ["A1", "A2", "B1", "B2", "C1", "C2"];
-  const genres = [
-    "classic",
-    "jazz",
-    "pop",
-    "folk",
-    "waltz",
-    "polka",
-    "tango",
-    "other",
-  ];
 
   useEffect(() => {
     setQueryParams(filters);
@@ -59,7 +51,7 @@ export function Filters() {
   return (
     <aside
       className={
-        "min-w-32 max-w-fit self-start rounded-lg bg-ok_main-50 px-3 py-2"
+        "hidden min-w-32 max-w-fit rounded-lg bg-ok_main-50 px-3 py-2 md:block"
       }
     >
       <div>

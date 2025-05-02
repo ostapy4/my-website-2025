@@ -15,7 +15,6 @@ type BaseProps = {
   error?: boolean;
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
-  variants?: "primary" | "cms";
 };
 
 export type NumberInputProps = BaseProps &
@@ -30,7 +29,6 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       error,
       startAdornment,
       endAdornment,
-      variants = "primary",
       ...inputProps
     } = props;
     const [isFocused, setIsFocused] = useState(false);
@@ -41,11 +39,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
         {label && (
           <label
             htmlFor={id}
-            className={cn(
-              "text-sm font-medium",
-              { "text-lime-900": variants === "cms" },
-              className?.label,
-            )}
+            className={cn("text-sm font-medium", className?.label)}
           >
             {label}
           </label>
@@ -57,14 +51,8 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
 
             {
               "border-ok_main-500 hover:border-ok_main-400":
-                !isFocused && !error && variants === "primary",
-              "border-ok_main-900":
-                isFocused && !error && variants === "primary",
-
-              "border-lime-700 hover:border-lime-600":
-                !isFocused && !error && variants === "cms",
-              "border-lime-800": isFocused && !error && variants === "cms",
-              "text-lime-800": variants === "cms",
+                !isFocused && !error,
+              "border-ok_main-900": isFocused && !error,
 
               "border-red-500": error,
             },
@@ -77,10 +65,6 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
             id={id}
             className={cn(
               "block flex-1 bg-transparent px-3 py-2.5 caret-ok_main-700 outline-none placeholder:text-ok_main-700/30",
-              {
-                "caret-lime-700 outline-none placeholder:text-lime-700/40":
-                  variants === "cms",
-              },
               className?.input,
             )}
             ref={ref}

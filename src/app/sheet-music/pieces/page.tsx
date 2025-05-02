@@ -27,14 +27,14 @@ export default async function PiecesPage(props: {
           >
             <Title
               size={"6xl"}
-              className={"mb-12 text-center text-ok_main-700"}
+              className={"mb-8 text-center text-ok_main-700 md:mb-12"}
             >
               Pieces
             </Title>
           </MotionDiv>
           <div className={""}>
             <SearchHeadPanel />
-            <div className={"flex gap-x-3"}>
+            <div className={"flex items-start gap-x-3"}>
               <Filters />
               <Suspense fallback={<Loader />}>
                 <SheetMusicResult searchParams={searchParams} />

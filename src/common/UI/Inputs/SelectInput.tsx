@@ -24,7 +24,6 @@ type BaseProps = {
   label?: string;
   helperText?: string;
   error?: boolean;
-  variant?: "default" | "cms";
 };
 
 export type SelectInputProps =
@@ -50,7 +49,6 @@ export function SelectInput(props: SelectInputProps) {
     helperText,
     error,
     className = {},
-    variant = "default",
   } = props;
 
   const { label: labelClassName, wrapper, button } = className;
@@ -70,13 +68,7 @@ export function SelectInput(props: SelectInputProps) {
   return (
     <div className={cn("flex flex-col gap-y-1", wrapper)}>
       {label && (
-        <label
-          className={cn(
-            "text-sm font-medium",
-            { "text-lime-900": variant === "cms" },
-            labelClassName,
-          )}
-        >
+        <label className={cn("text-sm font-medium", labelClassName)}>
           {label}
         </label>
       )}
@@ -87,19 +79,10 @@ export function SelectInput(props: SelectInputProps) {
               <>
                 <div
                   className={cn(
-                    "flex flex-nowrap items-center rounded-lg border px-3 py-[11px] transition-colors",
+                    "flex flex-nowrap items-center rounded-lg border border-ok_main-500 bg-ok_main-50 px-3 py-[11px] text-ok_main-600 transition-colors",
                     {
-                      "border-ok_main-500 bg-ok_main-50 text-ok_main-600":
-                        variant === "default",
-                      "border-ok_main-900": active && variant === "default",
-                      "hover:border-ok_main-400":
-                        !active && variant === "default",
-                    },
-                    {
-                      "border-lime-700 bg-ok_main-50 text-lime-800":
-                        variant === "cms",
-                      "border-lime-800": active && variant === "cms",
-                      "hover:border-lime-600": !active && variant === "cms",
+                      "border-ok_main-900": active,
+                      "hover:border-ok_main-400": !active,
                     },
                     {
                       "border-red-500": error,
@@ -119,7 +102,6 @@ export function SelectInput(props: SelectInputProps) {
                       "size-5 transform select-none stroke-ok_main-700 transition duration-300",
                       {
                         "rotate-180": open,
-                        "stroke-lime-700": variant === "cms",
                       },
                     )}
                   />
@@ -131,15 +113,9 @@ export function SelectInput(props: SelectInputProps) {
           <ListboxOptions
             anchor={"bottom start"}
             transition
-            className={cn(
-              "z-[1000] !max-h-56 w-[var(--button-width)] min-w-fit origin-top divide-y-[1px] rounded-lg border transition duration-300 ease-out [--anchor-gap:4px] focus:outline-none data-[closed]:scale-95 data-[open]:scale-100 data-[closed]:opacity-0",
-              {
-                "divide-ok_main-900 border-ok_main-900 bg-ok_main-50 text-ok_main-600":
-                  variant === "default",
-                "divide-lime-800 border-lime-800 bg-ok_main-50 text-lime-800":
-                  variant === "cms",
-              },
-            )}
+            className={
+              "z-[1000] !max-h-56 w-[var(--button-width)] min-w-fit origin-top divide-y-[1px] divide-ok_main-900 rounded-lg border border-ok_main-900 bg-ok_main-50 text-ok_main-600 transition duration-300 ease-out [--anchor-gap:4px] focus:outline-none data-[closed]:scale-95 data-[open]:scale-100 data-[closed]:opacity-0"
+            }
           >
             {options.map((i) => (
               <ListboxOption
@@ -152,13 +128,8 @@ export function SelectInput(props: SelectInputProps) {
                     className={cn(
                       "flex cursor-pointer select-none items-center justify-between gap-x-2 text-nowrap px-3 py-[11px]",
                       {
-                        "bg-ok_orange-300/30": focus && variant === "default",
-                        "bg-ok_orange-400 text-white":
-                          selected && variant === "default",
-                      },
-                      {
-                        "bg-lime-100/80": focus && variant === "cms",
-                        "bg-lime-600 text-white": selected && variant === "cms",
+                        "bg-ok_orange-300/30": focus,
+                        "bg-ok_orange-400 text-white": selected,
                       },
                     )}
                   >

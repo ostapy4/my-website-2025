@@ -9,6 +9,16 @@ type SheetsListProps = {
   view?: string | undefined;
 };
 export function SheetsList({ sheets, view = "grid" }: SheetsListProps) {
+  if (!sheets.length)
+    return (
+      <div
+        className={
+          "w-full py-8 text-center font-medium italic text-ok_main-600"
+        }
+      >
+        Sheet music not found
+      </div>
+    );
   return (
     <div
       className={cn({

@@ -22,18 +22,15 @@ export async function SheetMusicResult({ searchParams }: SheetMusicProps) {
   }
 
   if (level) {
-    const levelsArray = level.split("_");
-    where.level = { in: levelsArray };
+    where.level = { in: level.split("_") };
   }
 
   if (genre) {
-    const genresArray = genre.split("_");
-    where.genre = { in: genresArray };
+    where.genre = { in: genre.split("_") };
   }
 
   if (griff) {
-    const griffArray = griff.split("_");
-    where.griffType = { in: griffArray };
+    where.griffType = { in: griff.split("_") };
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const orderBy: any = {};

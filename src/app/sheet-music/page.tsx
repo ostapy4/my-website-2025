@@ -1,5 +1,8 @@
 import { Container, MotionDiv, Title } from "common";
+import Image from "next/image";
 import Link from "next/link";
+import ExercisesIMG from "resources/exercises.jpg";
+import PiecesIMG from "resources/pieces.jpg";
 
 import { Button } from "common/UI";
 
@@ -39,10 +42,7 @@ export default function SheetMusicPage() {
               amet consectetur adipisicing elit. Corrupti consequatur, unde hic
               minus animi laboriosam provident voluptatibus similique et numquam
               mollitia cumque, omnis obcaecati minima possimus accusamus, nobis
-              ex odio. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Corrupti consequatur, unde hic minus animi laboriosam provident
-              voluptatibus similique et numquam mollitia cumque, omnis obcaecati
-              minima possimus accusamus, nobis ex odio.
+              ex odio.
             </p>
           </MotionDiv>
           <MotionDiv
@@ -56,28 +56,47 @@ export default function SheetMusicPage() {
           >
             <Link
               href={`${MainUrls.getSheetMusic()}/exercises`}
-              className={"w-full flex-1"}
+              className={
+                "relative flex aspect-square w-full max-w-96 flex-1 flex-col overflow-hidden rounded-2xl bg-ok_main-50"
+              }
             >
-              <Button
-                fullWidth
-                size={"super-large"}
-                colorVariant={"cms"}
-                className={{ button: "rounded-2xl text-xl" }}
-              >
-                Exercises
-              </Button>
+              <div className={"relative flex-1"}>
+                <Image
+                  src={ExercisesIMG}
+                  alt={"Image"}
+                  fill
+                  className={"object-contain"}
+                />
+              </div>
+              <div className={"p-2"}>
+                <Button
+                  fullWidth
+                  colorVariant={"cms"}
+                  className={{ button: "rounded-2xl text-xl" }}
+                >
+                  Exercises
+                </Button>
+              </div>
             </Link>
             <Link
               href={`${MainUrls.getSheetMusic()}/pieces`}
-              className={"w-full flex-1"}
+              className={
+                "relative flex aspect-square w-full max-w-96 flex-1 flex-col overflow-hidden rounded-2xl bg-ok_main-50"
+              }
             >
-              <Button
-                fullWidth
-                size={"super-large"}
-                className={{ button: "rounded-2xl text-xl" }}
-              >
-                Pieces
-              </Button>
+              <div className={"relative flex-1"}>
+                <Image
+                  src={PiecesIMG}
+                  alt={"Image"}
+                  fill
+                  className={"object-contain"}
+                />
+              </div>
+              <div className={"p-2"}>
+                <Button fullWidth className={{ button: "rounded-2xl text-xl" }}>
+                  Pieces
+                </Button>
+              </div>
             </Link>
           </MotionDiv>
         </div>
