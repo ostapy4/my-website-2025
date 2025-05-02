@@ -42,6 +42,7 @@ export async function Hero() {
                     alt={"Ostap Konashuk"}
                     fill
                     className={"object-cover object-top saturate-[.9]"}
+                    loading={"eager"}
                     priority
                   />
                 )}
