@@ -23,7 +23,7 @@ export default function SheetMusicPage() {
               size={"6xl"}
               className={"mb-8 text-center text-ok_main-700 md:mb-12"}
             >
-              Sheet music
+              Sheet Music – Accordion Music Library
             </Title>
           </MotionDiv>
           <MotionDiv
@@ -31,18 +31,74 @@ export default function SheetMusicPage() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
+            className={
+              "mx-auto mb-12 max-w-screen-lg space-y-5 text-center md:text-lg"
+            }
           >
-            <p
-              className={"mx-auto mb-12 max-w-screen-lg text-center md:text-lg"}
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-              consequatur, unde hic minus animi laboriosam provident
-              voluptatibus similique et numquam mollitia cumque, omnis obcaecati
-              minima possimus accusamus, nobis ex odio. Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Corrupti consequatur, unde hic
-              minus animi laboriosam provident voluptatibus similique et numquam
-              mollitia cumque, omnis obcaecati minima possimus accusamus, nobis
-              ex odio.
+            <p>
+              In this section, I’ve collected sheet music and materials
+              specially prepared for accordionists of different levels. I’ve
+              divided the library into two convenient subcategories:
+            </p>
+            <div>
+              <h4
+                className={
+                  "mb-2 font-cormorant text-2xl font-bold text-ok_main-600 lg:text-3xl"
+                }
+              >
+                <span>🎯 </span>
+                <span className={"italic"}>Exercises</span>
+              </h4>
+              <p>
+                Here you’ll find scales, technical exercises, music theory
+                materials, and button layout charts (layouts) for chromatic
+                button accordions with C-griff and B-griff systems. These
+                resources are great for improving technique and getting familiar
+                with your instrument.
+              </p>
+            </div>
+            <div>
+              <h4
+                className={
+                  "mb-2 font-cormorant text-2xl font-bold text-ok_main-600 lg:text-3xl"
+                }
+              >
+                <span>🎼 </span>
+                <span className={"italic"}>Repertoire</span>
+              </h4>
+              <p>
+                This is a collection of musical pieces organised by difficulty
+                level — from A1 (beginner) to C2 (advanced performer), similar
+                to the structure used in language learning. You’ll find
+                simplified versions of popular tunes, original compositions, and
+                classical repertoire.
+              </p>
+            </div>
+            <div>
+              <div
+                className={
+                  "mb-2 font-cormorant text-2xl font-bold text-ok_main-600 lg:text-3xl"
+                }
+              >
+                <span className={"text-xl lg:text-2xl"}>✅ </span>
+                <span className={"italic"}>
+                  You can easily filter materials by:
+                </span>
+              </div>
+              <ul
+                className={
+                  "mx-auto inline-block list-inside list-disc text-left"
+                }
+              >
+                <li>Difficulty level</li>
+                <li>Accordion system (C-griff or B-griff)</li>
+                <li>Genre, etc.</li>
+              </ul>
+            </div>
+            <p>
+              I regularly update the library with new sheet music — both for
+              practice and for performance — so every player can find something
+              useful and inspiring.
             </p>
           </MotionDiv>
           <MotionDiv
