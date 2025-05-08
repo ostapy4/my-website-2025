@@ -107,7 +107,7 @@ export default function SheetMusicPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
             className={
-              "mx-auto flex max-w-screen-sm flex-col items-center justify-center gap-x-4 gap-y-3 md:flex-row"
+              "mx-auto flex max-w-screen-sm flex-col items-center justify-center gap-4 md:flex-row"
             }
           >
             <Link
