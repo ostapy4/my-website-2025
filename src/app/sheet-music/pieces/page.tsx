@@ -29,7 +29,7 @@ export default async function PiecesPage(props: {
               size={"6xl"}
               className={"mb-8 text-center text-ok_main-700 md:mb-12"}
             >
-              Pieces
+              Repertoire
             </Title>
           </MotionDiv>
           <div className={""}>

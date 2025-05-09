@@ -150,7 +150,7 @@ export default function SheetMusicPage() {
               </div>
               <div className={"p-2"}>
                 <Button fullWidth className={{ button: "rounded-2xl text-xl" }}>
-                  Pieces
+                  Repertoire
                 </Button>
               </div>
             </Link>
