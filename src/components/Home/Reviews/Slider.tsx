@@ -1,7 +1,7 @@
 "use client";
 
-import { VideoCard } from "./VideoCard";
-import { YoutubeVideo } from "@prisma/client";
+import { ReviewItem } from "./ReviewItem";
+import { Review } from "@prisma/client";
 import { MotionDiv, Title } from "common";
 import { useEffect, useRef, useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
@@ -15,7 +15,7 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 
 type SliderProps = {
-  data: YoutubeVideo[];
+  data: Review[];
 };
 
 export const Slider = ({ data }: SliderProps) => {
@@ -42,7 +42,7 @@ export const Slider = ({ data }: SliderProps) => {
         viewport={{ once: true }}
         className={"mb-8 flex items-end justify-between"}
       >
-        <Title size={"6xl"}>Video</Title>
+        <Title size={"6xl"}>Reviews</Title>
         <div className={cn("flex gap-x-2", { hidden: showNav })}>
           <button
             onClick={() => swiperRef.current?.slidePrev()}
@@ -96,9 +96,7 @@ export const Slider = ({ data }: SliderProps) => {
         >
           {data.map((item) => (
             <SwiperSlide key={item.id}>
-              <div className={"aspect-video overflow-hidden rounded-2xl"}>
-                <VideoCard url={item.url} />
-              </div>
+              <ReviewItem data={item} />
             </SwiperSlide>
           ))}
         </Swiper>

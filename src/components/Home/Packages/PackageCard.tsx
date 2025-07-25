@@ -12,6 +12,7 @@ import { MainUrls } from "route-urls";
 type Plan = {
   title: string;
   description: string;
+  duration: string;
   price: string;
   fullPrice?: string;
   plan?: string;
@@ -27,7 +28,7 @@ type PackageCardProps = {
 };
 
 export const PackageCard = ({ plan, classNames }: PackageCardProps) => {
-  const { title, description, price, fullPrice } = plan;
+  const { title, description, duration, price, fullPrice } = plan;
   return (
     <div
       className={
@@ -36,15 +37,15 @@ export const PackageCard = ({ plan, classNames }: PackageCardProps) => {
     >
       <div
         className={cn(
-          "w-full bg-gradient-to-br from-ok_main-600 to-ok_main-900 px-2 py-6",
+          "flex h-[6.5rem] w-full items-center justify-center bg-gradient-to-br from-ok_main-600 to-ok_main-900 px-2 py-6",
           classNames?.titleWrapper,
         )}
       >
         <Title
           component={"h4"}
-          size={"3xl"}
+          size={"xl"}
           className={cn(
-            "text-center font-mont uppercase not-italic text-ok_main-50",
+            "text-balance text-center font-mont uppercase not-italic text-ok_main-50",
             classNames?.title,
           )}
         >
@@ -71,13 +72,16 @@ export const PackageCard = ({ plan, classNames }: PackageCardProps) => {
           {price}
         </span>
       </div>
-      <div className={"flex-1 px-2 py-4"}>
+      <div className={"flex flex-1 flex-col justify-between px-2 pb-2 pt-4"}>
         <p
           className={
             "line-clamp-6 text-center font-cormorant text-xl italic text-ok_main-600"
           }
         >
           {description}
+        </p>
+        <p className={"text-center font-semibold text-ok_main-600"}>
+          {duration}
         </p>
       </div>
       <div className={"w-full px-2 py-3"}>

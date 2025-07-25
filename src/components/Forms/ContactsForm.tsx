@@ -101,10 +101,16 @@ export function ContactsForm({ plan }: ContactsFormProps) {
                     display={"Choose plan"}
                     label={"Plan"}
                     options={[
-                      { value: "free", label: "Free" },
-                      { value: "full-lesson", label: "Full lesson" },
-                      { value: "3-lessons", label: "3 Lessons" },
-                      { value: "10-lessons", label: "10 Lessons" },
+                      { value: "free", label: "Free Trial Lesson" },
+                      { value: "single", label: "Single Lesson" },
+                      {
+                        value: "4 Lessons",
+                        label: "4 lessons per month (1 lesson per week)s",
+                      },
+                      {
+                        value: "8-lessons",
+                        label: "8 lessons per month (2 lessons per week)",
+                      },
                     ]}
                   />
                 )}

@@ -3,32 +3,35 @@ import { Container, MotionDiv, Title } from "common";
 
 const plans = [
   {
-    title: "Trial Lesson",
-    description: "The first 30-minute lesson focuses on introductions",
+    title: "Free Trial Lesson",
+    description: "Your first introductory lesson — free!",
+    duration: "30 minutes",
     price: "FREE",
     plan: "free",
   },
   {
-    title: "Full Lesson",
-    description:
-      "A full-hour lesson aimed at uncovering your desires and goals.",
+    title: "Single Lesson",
+    description: "One flexible 55-minute lesson to fit your schedule and needs",
+    duration: "55 minutes",
+
     price: "$35",
-    plan: "full-lesson",
+    plan: "single-lesson",
   },
   {
-    title: "3 lessons",
-    description: "A 3-lesson program to get you started with the fundamentals",
-    price: "$100",
-    fullPrice: "$105",
-    plan: "3-lessons",
+    title: "Monthly Plan (4 lessons)",
+    description: "4 lessons per month (1 lesson per week)",
+    duration: "55 minutes",
+
+    price: "$130",
+    plan: "4-lessons",
   },
   {
-    title: "10 lessons",
-    description:
-      "A 10-lesson program combining a comprehensive approach with specific, measurable results",
-    price: "$330",
-    fullPrice: "$350",
-    plan: "10-lessons",
+    title: "Intensive Monthly Plan (8 lessons)",
+    description: "8 lessons per month (2 lessons per week)",
+    duration: "55 minutes",
+
+    price: "$250",
+    plan: "8-lessons",
   },
 ];
 
