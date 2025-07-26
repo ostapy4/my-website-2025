@@ -1,4 +1,4 @@
-import { Container, MotionDiv, Title } from "common";
+import { Container, Motion, Title } from "common";
 import Image from "next/image";
 import Link from "next/link";
 import { FaPhone } from "react-icons/fa6";
@@ -11,7 +11,7 @@ export default function Contacts() {
     <section>
       <Container>
         <div className={"py-8"}>
-          <MotionDiv
+          <Motion
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -23,8 +23,8 @@ export default function Contacts() {
             >
               Contacts
             </Title>
-          </MotionDiv>
-          <MotionDiv
+          </Motion>
+          <Motion
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -92,7 +92,7 @@ export default function Contacts() {
                 </ul>
               </div>
             </div>
-          </MotionDiv>
+          </Motion>
         </div>
       </Container>
     </section>

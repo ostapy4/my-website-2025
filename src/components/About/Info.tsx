@@ -1,4 +1,4 @@
-import { Container, MotionDiv, Title } from "common";
+import { Container, Motion, Title } from "common";
 import Image from "next/image";
 import { GoDash } from "react-icons/go";
 
@@ -44,7 +44,7 @@ export function Block({ data }: BlockProps) {
   const { header, details = [] } = data;
   return (
     <div className={"py-12"}>
-      <MotionDiv
+      <Motion
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
@@ -53,11 +53,11 @@ export function Block({ data }: BlockProps) {
         <Title component={"h3"} className={"mb-8 md:mb-12"}>
           {header}
         </Title>
-      </MotionDiv>
+      </Motion>
 
       <div className={"space-y-12"}>
         {details.map(({ id, title, description, image }, Idx) => (
-          <MotionDiv
+          <Motion
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -84,12 +84,6 @@ export function Block({ data }: BlockProps) {
                 ))}
               </ul>
             </div>
-            {/* <div
-              className={
-                "relative aspect-square w-full max-w-screen-sm self-center md:max-w-64"
-              }
-            >
-            </div> */}
             <Image
               src={image}
               alt={"Image"}
@@ -97,7 +91,7 @@ export function Block({ data }: BlockProps) {
               height={260}
               className={"mx-auto rounded-xl"}
             />
-          </MotionDiv>
+          </Motion>
         ))}
       </div>
     </div>

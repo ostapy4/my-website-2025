@@ -2,7 +2,7 @@
 
 import { VideoCard } from "./VideoCard";
 import { YoutubeVideo } from "@prisma/client";
-import { MotionDiv, Title } from "common";
+import { Motion, Title } from "common";
 import { useEffect, useRef, useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -35,7 +35,7 @@ export const Slider = ({ data }: SliderProps) => {
 
   return (
     <>
-      <MotionDiv
+      <Motion
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -69,8 +69,8 @@ export const Slider = ({ data }: SliderProps) => {
             />
           </button>
         </div>
-      </MotionDiv>
-      <MotionDiv
+      </Motion>
+      <Motion
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
@@ -79,9 +79,11 @@ export const Slider = ({ data }: SliderProps) => {
         <Swiper
           loop
           speed={900}
-          draggable
+          draggable={true}
           spaceBetween={12}
           slidesPerView={1}
+          touchStartPreventDefault={false}
+          grabCursor={true}
           breakpoints={{
             768: {
               slidesPerView: 2,
@@ -102,7 +104,7 @@ export const Slider = ({ data }: SliderProps) => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </MotionDiv>
+      </Motion>
     </>
   );
 };

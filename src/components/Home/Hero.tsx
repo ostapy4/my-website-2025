@@ -1,4 +1,4 @@
-import { Container, MotionSection, Title } from "common";
+import { Container, Motion, Title } from "common";
 import Image from "next/image";
 import { BsFillCheckSquareFill } from "react-icons/bs";
 import KeyIMG from "resources/music-key.svg";
@@ -13,7 +13,8 @@ const features = ["Accordion lessons", "Sheet music", "Audio transcription"];
 export async function Hero() {
   const data = await prismaDB.mainImage.findFirst();
   return (
-    <MotionSection
+    <Motion
+      as={"section"}
       initial={{ opacity: 0, x: -30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
@@ -152,6 +153,6 @@ export async function Hero() {
           </div>
         </div>
       </Container>
-    </MotionSection>
+    </Motion>
   );
 }

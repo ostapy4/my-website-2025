@@ -11,18 +11,16 @@ export const VideoCard: React.FC<VideoCardProps> = ({ url }) => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
-    return () => {
-      setMounted(false);
-    };
   }, [mounted]);
-  if (!url) return null;
+
+  if (!url || !mounted) return null;
   return (
     <>
       {mounted && (
         <ReactPlayer
           playsinline={true}
           url={url}
-          width={"auto"}
+          width={"100%"}
           height={"100%"}
           className={"overflow-hidden rounded-2xl"}
         />

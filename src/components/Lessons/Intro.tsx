@@ -1,5 +1,7 @@
-import { Container, MotionDiv, Title } from "common";
+import { Container, Title } from "common";
 import Link from "next/link";
+
+import { Motion } from "common/Motion";
 
 import { MainUrls } from "route-urls";
 
@@ -16,9 +18,9 @@ export function Intro() {
     <section>
       <Container>
         <div className={"py-12 text-center"}>
-          <MotionDiv
+          <Motion
             initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
@@ -32,10 +34,10 @@ export function Intro() {
               </span>{" "}
               Lessons Online
             </Title>
-          </MotionDiv>
-          <MotionDiv
+          </Motion>
+          <Motion
             initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
             className={
@@ -45,10 +47,10 @@ export function Intro() {
             {text.map((p) => (
               <p key={p.slice(0, 20)}>{p}</p>
             ))}
-          </MotionDiv>
-          <MotionDiv
+          </Motion>
+          <Motion
             initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
             className={"md:text-lg lg:text-xl"}
@@ -81,7 +83,7 @@ export function Intro() {
               contact form
             </Link>
             .
-          </MotionDiv>
+          </Motion>
         </div>
       </Container>
     </section>

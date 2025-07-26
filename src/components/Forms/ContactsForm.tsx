@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Container, MotionDiv, Title } from "common";
+import { Container, Motion, Title } from "common";
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -54,7 +54,7 @@ export function ContactsForm({ plan }: ContactsFormProps) {
         <div className={"py-8"}>
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              <MotionDiv
+              <Motion
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
@@ -70,8 +70,8 @@ export function ContactsForm({ plan }: ContactsFormProps) {
                     Ostap
                   </span>
                 </Title>
-              </MotionDiv>
-              <MotionDiv
+              </Motion>
+              <Motion
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -124,7 +124,7 @@ export function ContactsForm({ plan }: ContactsFormProps) {
                 <Button type={"submit"} className={{ button: "max-h-[46px]" }}>
                   Send
                 </Button>
-              </MotionDiv>
+              </Motion>
             </form>
           </FormProvider>
         </div>

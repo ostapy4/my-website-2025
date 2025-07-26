@@ -1,5 +1,5 @@
 import { Slider } from "./Slider";
-import { Container, MotionDiv, Title } from "common";
+import { Container, Motion, Title } from "common";
 
 import { prismaDB } from "lib/db";
 
@@ -12,7 +12,7 @@ export async function Gallery() {
     <section className={"bg-ok_main-100 py-12"}>
       <Container>
         <div>
-          <MotionDiv
+          <Motion
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -20,15 +20,15 @@ export async function Gallery() {
             className={"mb-6 md:mb-8 lg:mb-10"}
           >
             <Title size={"6xl"}>{data?.title}</Title>
-          </MotionDiv>
-          <MotionDiv
+          </Motion>
+          <Motion
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
             viewport={{ once: true }}
           >
             <Slider data={data?.images} />
-          </MotionDiv>
+          </Motion>
         </div>
       </Container>
     </section>

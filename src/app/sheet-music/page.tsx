@@ -1,4 +1,4 @@
-import { Container, MotionDiv, Title } from "common";
+import { Container, Motion, Title } from "common";
 import Image from "next/image";
 import Link from "next/link";
 import ExercisesIMG from "resources/exercises.jpg";
@@ -8,12 +8,25 @@ import { Button } from "common/UI";
 
 import { MainUrls } from "route-urls";
 
+export const metadata = {
+  title: "Sheet Music",
+  description:
+    "Buy accordion sheet music arranged by Ostap Konashuk. Unique custom arrangements for solo, duet, or ensemble. Available for download after purchase.",
+  keywords: [
+    "accordion sheet music",
+    "custom accordion arrangements",
+    "buy accordion music online",
+    "accordion transcription service",
+    "sheet music for chromatic accordion",
+  ],
+};
+
 export default function SheetMusicPage() {
   return (
     <section>
       <Container>
         <div className={"mb-16 py-8"}>
-          <MotionDiv
+          <Motion
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -25,8 +38,8 @@ export default function SheetMusicPage() {
             >
               Sheet Music – Accordion Music Library
             </Title>
-          </MotionDiv>
-          <MotionDiv
+          </Motion>
+          <Motion
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -100,8 +113,8 @@ export default function SheetMusicPage() {
               practice and for performance — so every player can find something
               useful and inspiring.
             </p>
-          </MotionDiv>
-          <MotionDiv
+          </Motion>
+          <Motion
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -135,7 +148,7 @@ export default function SheetMusicPage() {
               </div>
             </Link>
             <Link
-              href={`${MainUrls.getSheetMusic()}/pieces`}
+              href={`${MainUrls.getSheetMusic()}/repertoire`}
               className={
                 "relative flex aspect-square w-full max-w-96 flex-1 flex-col overflow-hidden rounded-2xl bg-ok_main-50"
               }
@@ -154,7 +167,7 @@ export default function SheetMusicPage() {
                 </Button>
               </div>
             </Link>
-          </MotionDiv>
+          </Motion>
         </div>
       </Container>
     </section>

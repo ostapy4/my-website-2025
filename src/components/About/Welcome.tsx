@@ -1,4 +1,4 @@
-import { Container, MotionDiv, Title } from "common";
+import { Container, Motion, Title } from "common";
 
 const text = [
   "I am a professional accordionist and music teacher, a graduate of the National Music Academy, with over 28 years of experience playing the accordion.",
@@ -11,7 +11,7 @@ export function Welcome() {
     <section>
       <Container>
         <div className={"py-12 text-center"}>
-          <MotionDiv
+          <Motion
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -20,8 +20,8 @@ export function Welcome() {
             <Title size={"6xl"} className={"mb-8 text-ok_main-700"}>
               About me
             </Title>
-          </MotionDiv>
-          <MotionDiv
+          </Motion>
+          <Motion
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -36,7 +36,7 @@ export function Welcome() {
                 <p key={p.slice(0, 20)}>{p}</p>
               ))}
             </div>
-          </MotionDiv>
+          </Motion>
         </div>
       </Container>
     </section>

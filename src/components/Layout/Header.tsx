@@ -161,6 +161,7 @@ export function Header() {
               </div>
             </nav>
             <ButtonBase
+              title={"Open menu"}
               onClick={() => setIsMenuOpen(true)}
               className={{ button: "lg:hidden" }}
             >
@@ -273,6 +274,7 @@ export function Header() {
             </nav>
           </div>
           <ButtonBase
+            title={"Close menu"}
             onClick={() => setIsMenuOpen(false)}
             className={{ button: "absolute right-4 top-6" }}
           >

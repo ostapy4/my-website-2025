@@ -25,7 +25,8 @@ export const metadata: Metadata = {
     default: "Ostap Konashuk",
     template: "%s | O.Konashuk",
   },
-  description: "Welcome to Ostap Konashuk website",
+  description:
+    "Online accordion lessons by professional accordionist Ostap Konashuk. Learn accordion, music theory and technique via video call. Book a free trial.",
   keywords: [
     "accordion",
     "sheet music",
@@ -35,7 +36,44 @@ export const metadata: Metadata = {
     "audio transcription",
     "accordion teacher",
     "arranger",
+    "online accordion lessons",
+    "accordion teacher online",
+    "private accordion lessons",
+    "learn accordion online",
+    "beginner accordion course",
+    "accordion classes via Zoom",
+    "accordion for adults online",
+    "music lessons accordion online",
+    "accordion teacher for beginners",
+    "accordion video call lessons",
+    "Zoom accordion lessons",
+    "music transcription accordion",
+    "accordionist Ostap Konashuk",
   ],
+  openGraph: {
+    title: "Accordion Lessons Online – Ostap Konashuk",
+    description:
+      "Accordion teacher Ostap Konashuk offers online lessons, sheet music and custom arrangements. Book a free trial lesson right now.",
+    url: "https://www.ostap-konashuk.com",
+    siteName: "Ostap Konashuk",
+    images: [
+      {
+        url: "/opengraph-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ostap Konashuk Accordionist",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Accordion Lessons Online – Ostap Konashuk",
+    description:
+      "Accordion teacher Ostap Konashuk offers online lessons, sheet music and custom arrangements. Book a free trial lesson right now.",
+    images: ["/opengraph-image.jpg"],
+  },
 };
 
 export default function RootLayout({
