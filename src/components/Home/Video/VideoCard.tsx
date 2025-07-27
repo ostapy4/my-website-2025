@@ -18,7 +18,8 @@ export const VideoCard: React.FC<VideoCardProps> = ({ url }) => {
     <>
       {mounted && (
         <ReactPlayer
-          playsinline={true}
+          playsinline
+          controls
           url={url}
           width={"100%"}
           height={"100%"}

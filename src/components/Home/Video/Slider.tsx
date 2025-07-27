@@ -79,11 +79,10 @@ export const Slider = ({ data }: SliderProps) => {
         <Swiper
           loop
           speed={900}
-          draggable={true}
+          draggable
           spaceBetween={12}
           slidesPerView={1}
-          touchStartPreventDefault={false}
-          grabCursor={true}
+          grabCursor
           breakpoints={{
             768: {
               slidesPerView: 2,
