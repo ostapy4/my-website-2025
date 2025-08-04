@@ -14,6 +14,7 @@ const plans = [
     duration: "30 minutes",
     price: "FREE",
     plan: "free",
+    link: "https://calendly.com/ostap-konashuk/accordion-lesson-free-trial",
   },
   {
     title: "Single Lesson",
@@ -21,6 +22,7 @@ const plans = [
     duration: "55 minutes",
     price: "$35",
     plan: "single-lesson",
+    link: "https://calendly.com/ostap-konashuk/accordion-lesson",
   },
   {
     title: "Monthly Plan (4 lessons)",
@@ -28,6 +30,7 @@ const plans = [
     duration: "55 minutes",
     price: "$130",
     plan: "4-lessons",
+    link: "https://buy.stripe.com/bJe00idsK4TLg8P2DzeEo02",
   },
   {
     title: "Intensive Monthly Plan (8 lessons)",
@@ -35,6 +38,7 @@ const plans = [
     duration: "55 minutes",
     price: "$250",
     plan: "8-lessons",
+    link: "https://buy.stripe.com/9B6dR888q3PH8Gn4LHeEo03",
   },
 ];
 

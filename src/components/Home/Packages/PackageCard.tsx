@@ -7,8 +7,6 @@ import { Button } from "common/UI";
 
 import { cn } from "utils/cn";
 
-import { MainUrls } from "route-urls";
-
 type Plan = {
   title: string;
   description: string;
@@ -16,6 +14,7 @@ type Plan = {
   price: string;
   fullPrice?: string;
   plan?: string;
+  link: string;
 };
 
 type PackageCardProps = {
@@ -85,26 +84,11 @@ export const PackageCard = ({ plan, classNames }: PackageCardProps) => {
         </p>
       </div>
       <div className={"w-full px-2 py-3"}>
-        {plan.plan === "free" || plan.plan === "full-lesson" ? (
-          <Link
-            href={"https://calendly.com/ostap-konashuk/accordion-lesson"}
-            target={"_blank"}
-            className={"block"}
-          >
-            <Button fullWidth className={{ button: classNames?.button }}>
-              Book
-            </Button>
-          </Link>
-        ) : (
-          <Link
-            href={`${MainUrls.getContacts()}?plan=${plan?.plan}`}
-            className={"block"}
-          >
-            <Button fullWidth className={{ button: classNames?.button }}>
-              Book
-            </Button>
-          </Link>
-        )}
+        <Link href={plan.link} target={"_blank"} className={"block"}>
+          <Button fullWidth className={{ button: classNames?.button }}>
+            Book
+          </Button>
+        </Link>
       </div>
     </div>
   );
