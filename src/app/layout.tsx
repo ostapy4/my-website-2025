@@ -3,6 +3,7 @@ import { Cormorant_Infant, Montserrat } from "next/font/google";
 import { Providers } from "providers";
 import { Toaster } from "sonner";
 
+import { GoogleAnalytics } from "components/GoogleAnalytics";
 import { Footer, Header } from "components/Layout";
 
 import "styles/tailwind.css";
@@ -112,6 +113,7 @@ export default function RootLayout({
           // }
           // }
         />
+        <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID!}/>
       </body>
     </html>
   );
