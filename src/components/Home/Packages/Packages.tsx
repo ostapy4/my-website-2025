@@ -20,7 +20,7 @@ const plans = [
     title: "Single Lesson",
     description: "One flexible 55-minute lesson to fit your schedule and needs",
     duration: "55 minutes",
-    price: "$35",
+    price: "$40",
     plan: "single-lesson",
     link: "https://calendly.com/ostap-konashuk/accordion-lesson",
   },
