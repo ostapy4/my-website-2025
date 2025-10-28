@@ -8,6 +8,8 @@ import { MdArrowForwardIos } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperT } from "swiper/types";
 
+import { GradientButton } from "common/UI";
+
 import { cn } from "utils/cn";
 
 import "swiper/css";
@@ -44,30 +46,20 @@ export const Slider = ({ data }: SliderProps) => {
       >
         <Title size={"6xl"}>Reviews</Title>
         <div className={cn("flex gap-x-2", { hidden: showNav })}>
-          <button
-            onClick={() => swiperRef.current?.slidePrev()}
-            className={
-              "group flex items-center justify-center rounded-full border-[0.6px] border-white/50 bg-gradient-to-br from-white/20 from-30% via-white/70 to-white/20 to-70% p-2 shadow-[0px_2px_8px_rgba(69,41,37,.05)] backdrop-blur md:p-3"
-            }
-          >
+          <GradientButton onClick={() => swiperRef.current?.slidePrev()}>
             <MdArrowForwardIos
               className={
                 "size-5 rotate-180 text-ok_main-600 transition-colors group-hover:text-ok_orange-400 md:size-6"
               }
             />
-          </button>
-          <button
-            onClick={() => swiperRef.current?.slideNext()}
-            className={
-              "group flex items-center justify-center rounded-full border-[0.6px] border-white/50 bg-gradient-to-br from-white/20 from-30% via-white/70 to-white/20 to-70% p-2 shadow-[0px_2px_8px_rgba(69,41,37,.05)] backdrop-blur md:p-3"
-            }
-          >
+          </GradientButton>
+          <GradientButton onClick={() => swiperRef.current?.slideNext()}>
             <MdArrowForwardIos
               className={
                 "size-5 text-ok_main-600 transition-colors group-hover:text-ok_orange-400 md:size-6"
               }
             />
-          </button>
+          </GradientButton>
         </div>
       </Motion>
       <Motion
